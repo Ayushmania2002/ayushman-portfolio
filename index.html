@@ -856,11 +856,12 @@
     <div class="container">
       <p class="section-label reveal-up"><span class="mono">07 / Find Me</span></p>
       <h2 class="section-heading reveal-up">Where can you <em>find me?</em></h2>
+      <p class="reach-hint reveal-up">Click a pin to find out &mdash; only one is right&nbsp;&#x1F609;</p>
 
       <div class="reach-grid">
 
-        <!-- ── Tirupati ── -->
-        <div class="reach-card reveal-up" id="rc-tirupati">
+        <!-- ── Tirupati (past) ── -->
+        <div class="reach-card reveal-up" id="rc-tirupati" data-present="false">
           <div class="reach-map-wrap">
             <div class="reach-map" id="rm-tirupati"></div>
             <div class="reach-map-overlay"></div>
@@ -871,19 +872,16 @@
               <span class="reach-city-name">Tirupati, India</span>
             </div>
             <button class="reach-reveal-btn" aria-expanded="false">
-              Find me here <span class="reach-arrow">&#x2192;</span>
+              Am I here? <span class="reach-arrow">&#x2192;</span>
             </button>
             <div class="reach-details-panel" aria-hidden="true">
-              <p class="reach-inst-name">IISER Tirupati</p>
-              <p class="reach-inst-sub">BS&ndash;MS Dual Degree &middot; 2020&ndash;2025</p>
-              <p class="reach-inst-sub">Dept. of Biology, Andhra Pradesh</p>
-              <a href="https://maps.google.com/?q=IISER+Tirupati" target="_blank" rel="noopener" class="reach-directions">&#x2197; Get directions</a>
+              <!-- filled by JS -->
             </div>
           </div>
         </div>
 
-        <!-- ── Kolkata ── -->
-        <div class="reach-card reveal-up" id="rc-kolkata" data-delay="100">
+        <!-- ── Kolkata (home, past) ── -->
+        <div class="reach-card reveal-up" id="rc-kolkata" data-delay="100" data-present="false">
           <div class="reach-map-wrap">
             <div class="reach-map" id="rm-kolkata"></div>
             <div class="reach-map-overlay"></div>
@@ -894,36 +892,31 @@
               <span class="reach-city-name">Kolkata, India</span>
             </div>
             <button class="reach-reveal-btn" aria-expanded="false">
-              Find me here <span class="reach-arrow">&#x2192;</span>
+              Am I here? <span class="reach-arrow">&#x2192;</span>
             </button>
             <div class="reach-details-panel" aria-hidden="true">
-              <p class="reach-inst-name">Bidhannagar, Kolkata</p>
-              <p class="reach-inst-sub">Hometown &middot; West Bengal</p>
-              <p class="reach-inst-sub">Salt Lake City, Bidhannagar</p>
-              <a href="https://maps.google.com/?q=Bidhannagar+Kolkata+West+Bengal" target="_blank" rel="noopener" class="reach-directions">&#x2197; Get directions</a>
+              <!-- filled by JS -->
             </div>
           </div>
         </div>
 
-        <!-- ── New Delhi / ICAR-IARI ── -->
-        <div class="reach-card reveal-up" id="rc-delhi" data-delay="200">
+        <!-- ── New Delhi / ICAR-IARI (CURRENT) ── -->
+        <div class="reach-card reveal-up" id="rc-delhi" data-delay="200" data-present="true">
           <div class="reach-map-wrap">
             <div class="reach-map" id="rm-delhi"></div>
             <div class="reach-map-overlay"></div>
           </div>
           <div class="reach-card-body">
             <div class="reach-location-row">
-              <span class="reach-dot"></span>
+              <span class="reach-dot reach-dot--present"></span>
               <span class="reach-city-name">New Delhi, India</span>
+              <span class="reach-now-badge">Here now</span>
             </div>
             <button class="reach-reveal-btn" aria-expanded="false">
-              Find me here <span class="reach-arrow">&#x2192;</span>
+              Am I here? <span class="reach-arrow">&#x2192;</span>
             </button>
             <div class="reach-details-panel" aria-hidden="true">
-              <p class="reach-inst-name">ICAR&ndash;IARI</p>
-              <p class="reach-inst-sub">Senior Research Fellow &middot; 2026&ndash;present</p>
-              <p class="reach-inst-sub">Plant Molecular Physiology Lab, Pusa</p>
-              <a href="https://maps.google.com/?q=ICAR+IARI+Pusa+New+Delhi" target="_blank" rel="noopener" class="reach-directions">&#x2197; Get directions</a>
+              <!-- filled by JS -->
             </div>
           </div>
         </div>

@@ -1375,6 +1375,53 @@ section { padding: var(--sp-3xl) 0; }
 }
 .reach-directions:hover { color: var(--accent); }
 
+/* ── "Here now" badge on current card ── */
+.reach-now-badge {
+  margin-left  : auto;
+  font-size    : .65rem;
+  font-weight  : 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color        : #22c55e;
+  border       : 1px solid #22c55e55;
+  padding      : 2px 8px;
+  border-radius: var(--r-pill);
+  background   : rgba(34,197,94,.08);
+}
+
+/* ── Green glow — present ── */
+.reach-card.is-present {
+  border-color: #22c55e !important;
+  box-shadow  : 0 0 0 1px #22c55e44, 0 12px 36px rgba(34,197,94,.25) !important;
+}
+.reach-card.is-present .reach-dot--present {
+  background : #22c55e;
+  box-shadow : 0 0 10px #22c55e;
+}
+
+/* ── Red glow — absent ── */
+.reach-card.is-absent {
+  border-color: #ef4444 !important;
+  box-shadow  : 0 0 0 1px #ef444444, 0 12px 36px rgba(239,68,68,.2) !important;
+}
+
+/* ── Status line inside panel ── */
+.reach-status {
+  font-weight  : 600;
+  font-size    : .82rem;
+  margin-bottom: 6px;
+}
+.reach-status--present { color: #22c55e; }
+.reach-status--absent  { color: #ef4444; }
+
+/* ── Hint line under heading ── */
+.reach-hint {
+  font-size  : .88rem;
+  color      : var(--text-3);
+  margin-top : -.8rem;
+  margin-bottom: 0;
+}
+
 /* Pulsing marker animation */
 @keyframes reach-pulse {
   0%, 100% { box-shadow: 0 0 0 4px rgba(94,234,212,.25), 0 0 16px rgba(94,234,212,.5); }
