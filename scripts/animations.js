@@ -57,7 +57,6 @@
         start  : 'top 78%',
         onEnter: () => gsap.to(cards, {
           opacity: 1, y: 0, duration: 0.65, stagger: 0.12, ease: 'power3.out',
-          clearProps: 'transform,opacity', // remove inline styles after anim so CSS opacity on children works
         }),
         once: true,
       });
@@ -94,8 +93,8 @@
 
   /* ──────────────────────────────────────────────
      MICROSCOPY SLIDESHOW
-     Fades through slides every 2.8 s.
-     Always starts on page load.
+     Uses direct style.opacity to bypass any CSS
+     stacking-context interference from GSAP.
   ────────────────────────────────────────────── */
   (function initSlideshow() {
     const container = document.querySelector('.r-slideshow');
@@ -108,21 +107,97 @@
     let current = 0;
     const DELAY = 2800;
 
+    // Init: set inline opacity directly (bypasses CSS class specificity issues)
+    slides.forEach((s, i) => {
+      s.style.transition = 'opacity 1s ease-in-out';
+      s.style.opacity    = i === 0 ? '1' : '0';
+    });
+    if (dots[0]) dots[0].classList.add('r-slide-dot--active');
+
     function goTo(idx) {
-      slides[current].classList.remove('r-slide--active');
+      slides[current].style.opacity = '0';
       if (dots[current]) dots[current].classList.remove('r-slide-dot--active');
-      current = (idx + slides.length) % slides.length;
-      slides[current].classList.add('r-slide--active');
+      current = ((idx % slides.length) + slides.length) % slides.length;
+      slides[current].style.opacity = '1';
       if (dots[current]) dots[current].classList.add('r-slide-dot--active');
     }
 
-    // Always start — no IntersectionObserver dependency
-    const timer = setInterval(() => goTo(current + 1), DELAY);
+    setInterval(() => goTo(current + 1), DELAY);
 
-    // Dot clicks
-    dots.forEach((dot, i) => {
-      dot.addEventListener('click', () => goTo(i));
+    dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+  })();
+
+  /* ──────────────────────────────────────────────
+     TIMELINE HORIZONTAL SCROLL
+     • Mouse wheel over section → horizontal scroll
+       with smooth momentum
+     • Click+drag to scroll
+     • Hides hint badge once user has scrolled
+  ────────────────────────────────────────────── */
+  (function initTimelineScroll() {
+    const outer = document.getElementById('tlOuter');
+    const hint  = document.getElementById('tlScrollHint');
+    if (!outer) return;
+
+    let isHovering = false;
+    outer.addEventListener('mouseenter', () => { isHovering = true;  });
+    outer.addEventListener('mouseleave', () => { isHovering = false; });
+
+    /* ── Momentum wheel scroll ── */
+    let velocity = 0;
+    let rafId    = null;
+
+    function applyMomentum() {
+      if (Math.abs(velocity) < 0.5) { velocity = 0; return; }
+      outer.scrollLeft += velocity;
+      velocity *= 0.88;
+      rafId = requestAnimationFrame(applyMomentum);
+    }
+
+    window.addEventListener('wheel', (e) => {
+      if (!isHovering) return;
+      e.preventDefault();
+      cancelAnimationFrame(rafId);
+      velocity += e.deltaY * 1.1;
+      rafId = requestAnimationFrame(applyMomentum);
+    }, { passive: false });
+
+    /* ── Drag to scroll ── */
+    let isDragging = false, startX = 0, scrollStart = 0;
+
+    outer.addEventListener('mousedown', (e) => {
+      isDragging  = true;
+      startX      = e.pageX;
+      scrollStart = outer.scrollLeft;
+      velocity    = 0;
+      cancelAnimationFrame(rafId);
+      outer.style.userSelect = 'none';
     });
+
+    window.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      outer.scrollLeft = scrollStart - (e.pageX - startX);
+    });
+
+    window.addEventListener('mouseup', () => {
+      isDragging = false;
+      outer.style.userSelect = '';
+    });
+
+    /* ── Touch swipe (mobile) ── */
+    let touchStartX = 0, touchScrollStart = 0;
+    outer.addEventListener('touchstart', (e) => {
+      touchStartX    = e.touches[0].pageX;
+      touchScrollStart = outer.scrollLeft;
+    }, { passive: true });
+    outer.addEventListener('touchmove', (e) => {
+      outer.scrollLeft = touchScrollStart - (e.touches[0].pageX - touchStartX);
+    }, { passive: true });
+
+    /* ── Hide hint once scrolled ── */
+    outer.addEventListener('scroll', () => {
+      if (outer.scrollLeft > 40 && hint) hint.style.opacity = '0';
+    }, { passive: true });
   })();
 
 })();

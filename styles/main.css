@@ -915,7 +915,43 @@ section { padding: var(--sp-3xl) 0; }
   scrollbar-width          : thin;
   scrollbar-color          : var(--accent) transparent;
   padding-bottom           : var(--sp-lg);
+  scroll-behavior          : auto; /* JS handles smooth momentum */
+  cursor                   : grab;
+  position                 : relative;
 }
+.tl-outer:active { cursor: grabbing; }
+
+/* Fade edges to hint at more content */
+.tl-outer::after {
+  content   : '';
+  position  : sticky;
+  right     : 0;
+  top       : 0;
+  width     : 60px;
+  height    : 100%;
+  background: linear-gradient(to right, transparent, var(--bg));
+  flex-shrink: 0;
+  pointer-events: none;
+}
+
+/* Scroll hint badge */
+.tl-scroll-hint {
+  display    : flex;
+  align-items: center;
+  gap        : 6px;
+  font-family: var(--f-mono);
+  font-size  : 0.68rem;
+  color      : var(--text-3);
+  margin-top : var(--sp-md);
+  padding    : 0 var(--gutter);
+  transition : opacity 0.4s;
+}
+.tl-scroll-hint svg { opacity: 0.5; animation: hintSlide 1.6s ease-in-out infinite; }
+@keyframes hintSlide {
+  0%,100% { transform: translateX(0); }
+  50%     { transform: translateX(6px); }
+}
+.tl-outer.has-scrolled ~ .tl-scroll-hint { opacity: 0; pointer-events: none; }
 
 .tl-outer::-webkit-scrollbar       { height: 3px; }
 .tl-outer::-webkit-scrollbar-track { background: var(--border-2); }

@@ -202,11 +202,21 @@
     nextBtn?.addEventListener('click', (e) => { e.stopPropagation(); showImg(current + 1); });
     backdrop?.addEventListener('click', closeGallery);
     closeBtn?.addEventListener('click', closeGallery);
+
+    // Scroll to navigate images
+    modal.addEventListener('wheel', (e) => {
+      if (!modal.classList.contains('is-open') || images.length <= 1) return;
+      e.preventDefault();
+      if (e.deltaY > 0) showImg(current + 1);
+      else              showImg(current - 1);
+    }, { passive: false });
+
+    // Keyboard nav
     document.addEventListener('keydown', (e) => {
       if (!modal.classList.contains('is-open')) return;
       if (e.key === 'Escape')      closeGallery();
-      if (e.key === 'ArrowLeft')   showImg(current - 1);
-      if (e.key === 'ArrowRight')  showImg(current + 1);
+      if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   showImg(current - 1);
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown')  showImg(current + 1);
     });
   })();
 
