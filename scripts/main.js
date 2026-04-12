@@ -85,37 +85,7 @@
   document.body.style.transition = 'opacity 0.45s ease';
   window.addEventListener('load', () => (document.body.style.opacity = '1'));
 
-  /* ── 7. Video expand popup ── */
-  (function initVideoPopup() {
-    const expandBtn = document.getElementById('videoExpandBtn');
-    const modal     = document.getElementById('videoModal');
-    const backdrop  = document.getElementById('videoModalBackdrop');
-    const closeBtn  = document.getElementById('videoModalClose');
-    const frame     = document.getElementById('videoModalFrame');
-    const VIDEO_SRC = 'https://drive.google.com/file/d/1UBNxH-qt3EM6c5r5zWEXwmunWhFg19Hf/preview';
-    if (!expandBtn || !modal) return;
-
-    function openVideo() {
-      frame.src = VIDEO_SRC;
-      modal.classList.add('is-open');
-      document.body.style.overflow = 'hidden';
-    }
-    function closeVideo() {
-      modal.classList.remove('is-open');
-      document.body.style.overflow = '';
-      setTimeout(() => { frame.src = ''; }, 300); // stop playback
-    }
-
-    expandBtn.addEventListener('click', openVideo);
-    expandBtn.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') openVideo(); });
-    backdrop?.addEventListener('click', closeVideo);
-    closeBtn?.addEventListener('click', closeVideo);
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && modal.classList.contains('is-open')) closeVideo();
-    });
-  })();
-
-  /* ── 8. Lab / advisor page popup ── */
+  /* ── 7. Lab / advisor page popup ── */
   (function initLabModal() {
     const modal    = document.getElementById('labModal');
     const backdrop = document.getElementById('labModalBackdrop');

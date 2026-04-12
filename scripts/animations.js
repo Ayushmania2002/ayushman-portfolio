@@ -56,7 +56,8 @@
         trigger: '.research-grid',
         start  : 'top 78%',
         onEnter: () => gsap.to(cards, {
-          opacity: 1, y: 0, duration: 0.65, stagger: 0.12, ease: 'power3.out'
+          opacity: 1, y: 0, duration: 0.65, stagger: 0.12, ease: 'power3.out',
+          clearProps: 'transform,opacity', // remove inline styles after anim so CSS opacity on children works
         }),
         once: true,
       });
