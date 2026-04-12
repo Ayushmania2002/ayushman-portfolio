@@ -335,7 +335,7 @@ section { padding: var(--sp-3xl) 0; }
 }
 
 [data-theme="dark"]  .bg-slide--active { opacity: 0.38; }
-[data-theme="light"] .bg-slide--active { opacity: 0.25; }
+[data-theme="light"] .bg-slide--active { opacity: 0.50; }
 
 .hero {
   position  : relative;
