@@ -15,9 +15,11 @@
   const BLOB_SIZE    = 22;       // px — main blob diameter
   const NODE_START   = 14;       // px — first chain node diameter
   const NODE_END     = 3;        // px — last chain node diameter
-  const ACCENT       = () =>
-    getComputedStyle(document.documentElement)
-      .getPropertyValue('--accent').trim() || '#5eead4';
+  const isDark  = () => document.documentElement.getAttribute('data-theme') !== 'light';
+  const ACCENT  = () => isDark()
+    ? (getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#5eead4')
+    : '#0a6b62';   // dark teal — visible on light backgrounds
+  const BLEND   = () => isDark() ? 'screen' : 'normal';
 
   /* ── Remove old cursor elements from HTML ── */
   document.getElementById('cursorDot') ?.remove();
@@ -39,7 +41,7 @@
     transform     : 'translate(-50%, -50%)',
     transition    : 'width .25s ease, height .25s ease, opacity .2s ease',
     willChange    : 'left, top',
-    mixBlendMode  : 'screen',
+    mixBlendMode  : BLEND(),
   });
   document.body.appendChild(blob);
 
@@ -64,7 +66,7 @@
       zIndex       : 9999 - i,
       transform    : 'translate(-50%, -50%)',
       willChange   : 'left, top',
-      mixBlendMode : 'screen',
+      mixBlendMode : BLEND(),
     });
     document.body.appendChild(el);
     nodes.push({ el, x: innerWidth / 2, y: innerHeight / 2 });
@@ -116,8 +118,11 @@
       prevY = node.y;
     });
 
-    blob.style.background = color;
+    const blend = BLEND();
+    blob.style.background    = color;
+    blob.style.mixBlendMode  = blend;
     updateGlow(color);
+    nodes.forEach(n => n.el.style.mixBlendMode = blend);
   }
 
   tick();
