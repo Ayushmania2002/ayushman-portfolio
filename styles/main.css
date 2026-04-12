@@ -1141,3 +1141,130 @@ section { padding: var(--sp-3xl) 0; }
   .orcid-block      { gap: var(--sp-md); }
   .tl-item          { min-width: 220px; }
 }
+
+/* ── 17. DEGREE CARD — hover preview + click popup ─────── */
+
+/* Small hint label inside the card */
+.tl-degree-hint {
+  display    : block;
+  font-size  : 0.68rem;
+  color      : var(--accent);
+  opacity    : 0.55;
+  margin-top : var(--sp-sm);
+  letter-spacing: 0.04em;
+  transition : opacity var(--dur-fast);
+}
+.tl-card--degree:hover .tl-degree-hint { opacity: 0.9; }
+
+/* Hover-preview image strip — slides down from bottom of card */
+.tl-degree-preview {
+  overflow   : hidden;
+  max-height : 0;
+  opacity    : 0;
+  margin-top : 0;
+  border-radius: 0 0 var(--r-md) var(--r-md);
+  transition : max-height 0.4s var(--ease-out),
+               opacity    0.35s ease,
+               margin-top 0.4s var(--ease-out);
+  pointer-events: none;
+}
+.tl-degree-preview img {
+  width        : 100%;
+  display      : block;
+  border-radius: var(--r-sm);
+  opacity      : 0.6;            /* 60% transparent */
+  object-fit   : cover;
+}
+.tl-card--degree:hover .tl-degree-preview {
+  max-height    : 260px;
+  opacity       : 1;
+  margin-top    : var(--sp-md);
+  pointer-events: auto;
+}
+
+/* Make the degree card look interactive */
+.tl-card--degree {
+  cursor  : pointer;
+  position: relative;
+}
+.tl-card--degree::after {
+  content       : '';
+  position      : absolute;
+  inset         : 0;
+  border-radius : var(--r-md);
+  border        : 1px solid var(--accent);
+  opacity       : 0;
+  transition    : opacity var(--dur-fast);
+  pointer-events: none;
+}
+.tl-card--degree:hover::after { opacity: 0.45; }
+
+/* ── Degree modal (popup) ── */
+.degree-modal {
+  position  : fixed;
+  inset     : 0;
+  z-index   : 20000;
+  display   : flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  opacity   : 0;
+  transition: opacity 0.28s ease;
+}
+.degree-modal.is-open {
+  pointer-events: auto;
+  opacity       : 1;
+}
+
+.degree-modal__backdrop {
+  position  : absolute;
+  inset     : 0;
+  background: rgba(0,0,0,0.72);
+  backdrop-filter: blur(4px);
+  cursor    : pointer;
+}
+
+.degree-modal__box {
+  position     : relative;
+  z-index      : 1;
+  max-width    : min(90vw, 680px);
+  max-height   : 90vh;
+  border-radius: var(--r-lg);
+  overflow     : hidden;
+  box-shadow   : 0 24px 80px rgba(0,0,0,0.6),
+                 0 0 0 1px var(--accent-glow);
+  transform    : scale(0.88);
+  transition   : transform 0.3s var(--ease-out);
+}
+.degree-modal.is-open .degree-modal__box {
+  transform: scale(1);
+}
+
+.degree-modal__img {
+  display : block;
+  width   : 100%;
+  height  : auto;
+  max-height: 88vh;
+  object-fit: contain;
+}
+
+.degree-modal__close {
+  position  : absolute;
+  top       : 10px;
+  right     : 12px;
+  background: rgba(0,0,0,0.55);
+  border    : 1px solid rgba(255,255,255,0.18);
+  color     : #fff;
+  font-size : 1.4rem;
+  line-height: 1;
+  padding   : 4px 10px 6px;
+  border-radius: var(--r-pill);
+  cursor    : pointer;
+  transition: background var(--dur-fast), transform var(--dur-fast);
+  z-index   : 2;
+}
+.degree-modal__close:hover {
+  background: var(--accent);
+  color     : var(--bg);
+  transform : scale(1.1);
+}

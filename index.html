@@ -223,20 +223,19 @@
 
       <div class="research-grid">
 
-        <!-- ── CARD 1: MD Simulation (featured, full-width, video) ── -->
+        <!-- ── CARD 1: MD Simulation (featured, full-width, Google Drive video) ── -->
         <article class="r-card r-card--featured reveal-up" data-delay="0">
           <div class="r-card-video-wrap">
-            <video
-              class="r-video"
-              src="assets/images/md-simulation.mp4"
-              autoplay
-              muted
-              loop
-              playsinline
+            <iframe
+              class="r-video r-video--iframe"
+              src="https://drive.google.com/file/d/1UBNxH-qt3EM6c5r5zWEXwmunWhFg19Hf/preview"
+              allow="autoplay; fullscreen"
+              allowfullscreen
+              frameborder="0"
               aria-label="Molecular dynamics simulation of PYL6-ABA-PP2C51 receptor complex in rice"
-            ></video>
+            ></iframe>
             <div class="r-video-overlay">
-              <span class="mono r-video-label">&#9654; MD Simulation — Live</span>
+              <span class="mono r-video-label">&#9654; MD Simulation — Full Quality</span>
             </div>
           </div>
           <div class="r-card-body">
@@ -399,7 +398,7 @@
 
         <div class="tl-item">
           <div class="tl-dot"></div>
-          <span class="tl-year mono">2019</span>
+          <span class="tl-year mono">2020</span>
           <div class="tl-card">
             <h3>BS&ndash;MS Programme Begins</h3>
             <p>Enrolled in the BS&ndash;MS Dual Degree in Biology at
@@ -410,7 +409,7 @@
 
         <div class="tl-item">
           <div class="tl-dot"></div>
-          <span class="tl-year mono">2022</span>
+          <span class="tl-year mono">2023</span>
           <div class="tl-card">
             <h3>Plant Stress Biology Lab</h3>
             <p>Worked on functional genomics of novel <em>Arabidopsis</em>
@@ -421,7 +420,7 @@
 
         <div class="tl-item">
           <div class="tl-dot"></div>
-          <span class="tl-year mono">2023</span>
+          <span class="tl-year mono">2024</span>
           <div class="tl-card">
             <h3>MS Thesis &mdash; Plant Signalling Lab</h3>
             <p>Characterised <em>CYCLOPS</em> in <em>Arachis hypogaea</em>
@@ -431,19 +430,23 @@
           </div>
         </div>
 
-        <div class="tl-item">
+        <div class="tl-item tl-item--degree" id="degreeItem">
           <div class="tl-dot"></div>
-          <span class="tl-year mono">2024</span>
-          <div class="tl-card">
+          <span class="tl-year mono">2025</span>
+          <div class="tl-card tl-card--degree" id="degreeCard">
             <h3>BS&ndash;MS Degree Conferred</h3>
             <p>Graduated from IISER Tirupati with a BS&ndash;MS Dual Degree
             in Biology. Presented research at <strong>CSTT 2025</strong>.</p>
+            <span class="tl-degree-hint mono">hover for degree · click to zoom</span>
+            <div class="tl-degree-preview" id="degreePreview">
+              <img src="assets/images/degree.jpg" alt="BS-MS Degree Certificate" />
+            </div>
           </div>
         </div>
 
         <div class="tl-item tl-item--active">
           <div class="tl-dot tl-dot--active"></div>
-          <span class="tl-year mono">2024 &ndash;</span>
+          <span class="tl-year mono">2025 &ndash;</span>
           <div class="tl-card tl-card--active">
             <h3>Senior Research Fellow &middot; ICAR&ndash;IARI</h3>
             <p>Joined the Plant Molecular Physiology Lab at ICAR&ndash;IARI
@@ -528,6 +531,15 @@
       <span class="mono footer-stack">Built with Three.js &middot; GSAP &middot; Vanilla JS</span>
     </div>
   </footer>
+
+  <!-- Degree certificate popup modal -->
+  <div class="degree-modal" id="degreeModal" role="dialog" aria-modal="true" aria-label="Degree Certificate">
+    <div class="degree-modal__backdrop" id="degreeModalBackdrop"></div>
+    <div class="degree-modal__box">
+      <button class="degree-modal__close" id="degreeModalClose" aria-label="Close">&times;</button>
+      <img src="assets/images/degree.jpg" alt="BS-MS Degree Certificate" class="degree-modal__img" />
+    </div>
+  </div>
 
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/three@0.161.0/build/three.min.js"></script>

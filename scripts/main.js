@@ -85,7 +85,34 @@
   document.body.style.transition = 'opacity 0.45s ease';
   window.addEventListener('load', () => (document.body.style.opacity = '1'));
 
-  /* ── 7. Pixel-portrait hover effect ── */
+  /* ── 7. Degree certificate — hover preview + click popup ── */
+  (function initDegreeCard() {
+    const card    = document.getElementById('degreeCard');
+    const modal   = document.getElementById('degreeModal');
+    const backdrop = document.getElementById('degreeModalBackdrop');
+    const closeBtn = document.getElementById('degreeModalClose');
+    if (!card || !modal) return;
+
+    function openModal(e) {
+      e.stopPropagation();
+      modal.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+      closeBtn?.focus();
+    }
+    function closeModal() {
+      modal.classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+
+    card.addEventListener('click', openModal);
+    backdrop?.addEventListener('click', closeModal);
+    closeBtn?.addEventListener('click', closeModal);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+    });
+  })();
+
+  /* ── 8. Pixel-portrait hover effect ── */
   const wrap  = document.getElementById('profilePhotoWrap');
   const photo = document.getElementById('profilePhoto');
 
