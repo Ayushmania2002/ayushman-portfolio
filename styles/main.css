@@ -561,6 +561,13 @@ section { padding: var(--sp-3xl) 0; }
   font-weight  : 500;
   align-self   : flex-start;
 }
+.about-badge-link {
+  color      : var(--text-2);
+  text-decoration: none;
+  font-size  : .78rem;
+  transition : color var(--dur-fast);
+}
+.about-badge-link:hover { color: var(--accent); }
 
 .about-socials {
   display  : flex;
