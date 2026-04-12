@@ -128,76 +128,55 @@
   })();
 
   /* ──────────────────────────────────────────────
-     TIMELINE HORIZONTAL SCROLL
-     • Mouse wheel over section → horizontal scroll
-       with smooth momentum
-     • Click+drag to scroll
-     • Hides hint badge once user has scrolled
+     TIMELINE — STICKY HORIZONTAL SCROLL
+     The section gets extra height = track scroll
+     width. The inner wrapper is position:sticky so
+     it pins while the user scrolls vertically, and
+     the track translates horizontally in sync with
+     scroll progress — exactly like shivamkgw.github.io
   ────────────────────────────────────────────── */
-  (function initTimelineScroll() {
-    const outer = document.getElementById('tlOuter');
-    const hint  = document.getElementById('tlScrollHint');
-    if (!outer) return;
+  (function initStickyTimeline() {
+    const section = document.getElementById('timeline');
+    const track   = document.getElementById('tlTrack');
+    const hint    = document.getElementById('tlScrollHint');
+    const bar     = document.getElementById('tlProgressBar');
+    if (!section || !track) return;
 
-    let isHovering = false;
-    outer.addEventListener('mouseenter', () => { isHovering = true;  });
-    outer.addEventListener('mouseleave', () => { isHovering = false; });
+    // Skip on mobile — CSS resets to normal layout
+    const isMobile = () => window.innerWidth <= 768;
 
-    /* ── Momentum wheel scroll ── */
-    let velocity = 0;
-    let rafId    = null;
+    let maxX = 0;
 
-    function applyMomentum() {
-      if (Math.abs(velocity) < 0.5) { velocity = 0; return; }
-      outer.scrollLeft += velocity;
-      velocity *= 0.88;
-      rafId = requestAnimationFrame(applyMomentum);
+    function setHeight() {
+      if (isMobile()) {
+        section.style.height = '';
+        track.style.transform = '';
+        return;
+      }
+      // Extra scrollable height = how far the track needs to travel
+      maxX = track.scrollWidth - window.innerWidth;
+      section.style.height = (window.innerHeight + Math.max(0, maxX)) + 'px';
     }
 
-    window.addEventListener('wheel', (e) => {
-      if (!isHovering) return;
-      e.preventDefault();
-      cancelAnimationFrame(rafId);
-      velocity += e.deltaY * 1.1;
-      rafId = requestAnimationFrame(applyMomentum);
-    }, { passive: false });
+    function onScroll() {
+      if (isMobile()) return;
+      const rect     = section.getBoundingClientRect();
+      const progress = Math.max(0, Math.min(1, -rect.top / maxX));
+      track.style.transform = `translateX(${-maxX * progress}px)`;
+      if (bar) bar.style.width = (progress * 100) + '%';
+      // Hide scroll hint after 5% progress
+      if (hint && progress > 0.05) hint.classList.add('hidden');
+    }
 
-    /* ── Drag to scroll ── */
-    let isDragging = false, startX = 0, scrollStart = 0;
-
-    outer.addEventListener('mousedown', (e) => {
-      isDragging  = true;
-      startX      = e.pageX;
-      scrollStart = outer.scrollLeft;
-      velocity    = 0;
-      cancelAnimationFrame(rafId);
-      outer.style.userSelect = 'none';
+    // Init — wait for fonts/images so track width is accurate
+    window.addEventListener('load', () => {
+      setHeight();
+      onScroll();
     });
 
-    window.addEventListener('mousemove', (e) => {
-      if (!isDragging) return;
-      outer.scrollLeft = scrollStart - (e.pageX - startX);
-    });
-
-    window.addEventListener('mouseup', () => {
-      isDragging = false;
-      outer.style.userSelect = '';
-    });
-
-    /* ── Touch swipe (mobile) ── */
-    let touchStartX = 0, touchScrollStart = 0;
-    outer.addEventListener('touchstart', (e) => {
-      touchStartX    = e.touches[0].pageX;
-      touchScrollStart = outer.scrollLeft;
-    }, { passive: true });
-    outer.addEventListener('touchmove', (e) => {
-      outer.scrollLeft = touchScrollStart - (e.touches[0].pageX - touchStartX);
-    }, { passive: true });
-
-    /* ── Hide hint once scrolled ── */
-    outer.addEventListener('scroll', () => {
-      if (outer.scrollLeft > 40 && hint) hint.style.opacity = '0';
-    }, { passive: true });
+    setHeight(); // immediate rough pass
+    window.addEventListener('resize', () => { setHeight(); onScroll(); });
+    window.addEventListener('scroll', onScroll, { passive: true });
   })();
 
 })();

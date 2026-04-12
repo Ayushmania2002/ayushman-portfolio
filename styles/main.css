@@ -908,33 +908,45 @@ section { padding: var(--sp-3xl) 0; }
 }
 
 /* ── 12. JOURNEY / TIMELINE ───────────────────────────── */
+
+/* Section gets its height set dynamically by JS (viewport + scroll travel) */
+.journey { position: relative; }
+
+/* Sticky viewport — pins to screen while user scrolls through */
+.journey-sticky {
+  position      : sticky;
+  top           : 0;
+  height        : 100vh;
+  overflow      : hidden;
+  display       : flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top   : 0;
+}
+
+.journey-sticky .container {
+  padding-bottom: var(--sp-lg);
+  flex-shrink   : 0;
+}
+
+/* Progress bar at bottom of sticky viewport */
+.tl-progress-bar {
+  position  : absolute;
+  bottom    : 0;
+  left      : 0;
+  height    : 2px;
+  width     : 0%;
+  background: var(--accent);
+  transition: width 0.05s linear;
+  box-shadow: 0 0 8px var(--accent);
+}
+
 .tl-outer {
-  overflow-x               : auto;
-  overflow-y               : hidden;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width          : thin;
-  scrollbar-color          : var(--accent) transparent;
-  padding-bottom           : var(--sp-lg);
-  scroll-behavior          : auto; /* JS handles smooth momentum */
-  cursor                   : grab;
-  position                 : relative;
-}
-.tl-outer:active { cursor: grabbing; }
-
-/* Fade edges to hint at more content */
-.tl-outer::after {
-  content   : '';
-  position  : sticky;
-  right     : 0;
-  top       : 0;
-  width     : 60px;
-  height    : 100%;
-  background: linear-gradient(to right, transparent, var(--bg));
+  overflow  : hidden;          /* track moves via transform, not scroll */
   flex-shrink: 0;
-  pointer-events: none;
 }
 
-/* Scroll hint badge */
+/* Scroll hint */
 .tl-scroll-hint {
   display    : flex;
   align-items: center;
@@ -942,20 +954,25 @@ section { padding: var(--sp-3xl) 0; }
   font-family: var(--f-mono);
   font-size  : 0.68rem;
   color      : var(--text-3);
-  margin-top : var(--sp-md);
-  padding    : 0 var(--gutter);
-  transition : opacity 0.4s;
+  padding    : var(--sp-md) var(--gutter) 0;
+  transition : opacity 0.5s;
+  flex-shrink: 0;
 }
 .tl-scroll-hint svg { opacity: 0.5; animation: hintSlide 1.6s ease-in-out infinite; }
 @keyframes hintSlide {
   0%,100% { transform: translateX(0); }
-  50%     { transform: translateX(6px); }
+  50%     { transform: translateX(8px); }
 }
-.tl-outer.has-scrolled ~ .tl-scroll-hint { opacity: 0; pointer-events: none; }
+.tl-scroll-hint.hidden { opacity: 0; pointer-events: none; }
 
-.tl-outer::-webkit-scrollbar       { height: 3px; }
-.tl-outer::-webkit-scrollbar-track { background: var(--border-2); }
-.tl-outer::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+/* Mobile — revert to normal vertical layout */
+@media (max-width: 768px) {
+  .journey           { height: auto !important; }
+  .journey-sticky    { position: static; height: auto; overflow: visible; }
+  .tl-outer          { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .tl-track          { transform: none !important; }
+  .tl-progress-bar   { display: none; }
+}
 
 .tl-track {
   display  : flex;
