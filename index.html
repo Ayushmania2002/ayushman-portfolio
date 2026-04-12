@@ -37,6 +37,7 @@
         <li><a href="#research"     class="nav-link">Research</a></li>
         <li><a href="#publications" class="nav-link">Publications</a></li>
         <li><a href="#timeline"     class="nav-link">Journey</a></li>
+        <li><a href="#skills"       class="nav-link">Skills</a></li>
         <li><a href="#contact"      class="nav-link">Contact</a></li>
       </ul>
 
@@ -57,6 +58,7 @@
       <li><a href="#research">Research</a></li>
       <li><a href="#publications">Publications</a></li>
       <li><a href="#timeline">Journey</a></li>
+      <li><a href="#skills">Skills</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </div>
@@ -234,8 +236,8 @@
               frameborder="0"
               aria-label="Molecular dynamics simulation of PYL6-ABA-PP2C51 receptor complex in rice"
             ></iframe>
-            <div class="r-video-overlay">
-              <span class="mono r-video-label">&#9654; MD Simulation — Full Quality</span>
+            <div class="r-video-overlay r-video-overlay--expand" id="videoExpandBtn" role="button" tabindex="0" aria-label="Expand video">
+              <span class="mono r-video-expand-hint">&#x26F6; Expand</span>
             </div>
           </div>
           <div class="r-card-body">
@@ -396,63 +398,253 @@
     <div class="tl-outer" id="tlOuter">
       <div class="tl-track" id="tlTrack">
 
+        <!-- 2020 · BS-MS Begins -->
         <div class="tl-item">
           <div class="tl-dot"></div>
           <span class="tl-year mono">2020</span>
           <div class="tl-card">
             <h3>BS&ndash;MS Programme Begins</h3>
-            <p>Enrolled in the BS&ndash;MS Dual Degree in Biology at
-            <strong>IISER Tirupati</strong>, diving into plant biology,
-            ecology, and evolutionary science.</p>
+            <p class="tl-inst">IISER Tirupati &middot; Yerpedu, Tirupati</p>
+            <p>Enrolled in the Integrated BS&ndash;MS Dual Degree in Biology at
+            <strong>IISER Tirupati</strong>, majoring in Biology and specialising
+            in Plant Biology &amp; Evolution.</p>
           </div>
         </div>
 
+        <!-- 2022 · Summer Intern — Dr. Nandini Rajamani (Ecology) -->
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <span class="tl-year mono">2022</span>
+          <div class="tl-card">
+            <h3>Summer Intern &middot; Ecology &amp; Wildlife Lab</h3>
+            <p class="tl-inst">IISER Tirupati &middot; May&ndash;Jul 2022</p>
+            <p>Studied the diet of small cat varieties in Central India and
+            performed identification &amp; classification of rodent skeletal
+            and dental anatomy from jungle cat fecal samples.</p>
+            <p class="tl-advisor">
+              Advisor: <strong>Dr.&nbsp;Nandini Rajamani</strong>
+              &mdash; Asst. Professor, Dept. of Biology
+            </p>
+            <button class="tl-lab-btn"
+              data-lab-name="Rajamani Lab — Ecology &amp; Wildlife Biology"
+              data-advisor="Dr. Nandini Rajamani, Assistant Professor, Department of Biology, IISER Tirupati"
+              data-lab-url="https://www.iisertirupati.ac.in/academics/faculty/biology/">
+              View Lab &#x2197;
+            </button>
+          </div>
+        </div>
+
+        <!-- 2023 May · Summer Intern — Dr. Swarup Roy Choudhury (AhCCaMK) -->
         <div class="tl-item">
           <div class="tl-dot"></div>
           <span class="tl-year mono">2023</span>
           <div class="tl-card">
-            <h3>Plant Stress Biology Lab</h3>
-            <p>Worked on functional genomics of novel <em>Arabidopsis</em>
-            genes applying CRISPR-Cas cloning strategies under
-            Dr.&nbsp;Annapurna Devi Allu, IISER Tirupati.</p>
+            <h3>Summer Intern &middot; Plant Signal Transduction Lab</h3>
+            <p class="tl-inst">IISER Tirupati &middot; May&ndash;Jul 2023</p>
+            <p>Worked on the <em>AhCCaMK</em> gene of <em>Arachis hypogaea</em>
+            (groundnut), presenting experimental outcomes on nodulation
+            characteristics of plant roots under genetic modifications.</p>
+            <p class="tl-advisor">
+              Advisor: <strong>Dr.&nbsp;Swarup Roy Choudhury</strong>
+              &mdash; Asst. Professor, Dept. of Biology
+            </p>
+            <button class="tl-lab-btn"
+              data-lab-name="Plant Signal Transduction Lab"
+              data-advisor="Dr. Swarup Roy Choudhury, Assistant Professor, Department of Biology, IISER Tirupati"
+              data-lab-url="https://www.iisertirupati.ac.in/academics/faculty/biology/">
+              View Lab &#x2197;
+            </button>
           </div>
         </div>
 
+        <!-- 2023 Sep · Semester Project — Dr. Annapurna Devi Allu (Arabidopsis/CRISPR) -->
         <div class="tl-item">
           <div class="tl-dot"></div>
-          <span class="tl-year mono">2024</span>
+          <span class="tl-year mono">2023</span>
           <div class="tl-card">
-            <h3>MS Thesis &mdash; Plant Signalling Lab</h3>
-            <p>Characterised <em>CYCLOPS</em> in <em>Arachis hypogaea</em>
-            for root nodule symbiosis signalling, combining wet-lab
-            assays with molecular docking and structural analyses &mdash;
-            supervised by Dr.&nbsp;Swarup Roy Choudhury.</p>
+            <h3>Semester Project &middot; Plant Stress Biology Lab</h3>
+            <p class="tl-inst">IISER Tirupati &middot; Sep&ndash;Nov 2023</p>
+            <p>Worked on two novel identified genes of <em>Arabidopsis</em>
+            and presented a poster on CRISPR-Cas cloning strategies
+            and genetic modifications.</p>
+            <p class="tl-advisor">
+              Advisor: <strong>Dr.&nbsp;Annapurna Devi Allu</strong>
+              &mdash; Assoc. Professor, Dept. of Biology
+            </p>
+            <button class="tl-lab-btn"
+              data-lab-name="Plant Stress Biology Lab"
+              data-advisor="Dr. Annapurna Devi Allu, Associate Professor, Department of Biology, IISER Tirupati"
+              data-lab-url="https://www.iisertirupati.ac.in/academics/faculty/biology/">
+              View Lab &#x2197;
+            </button>
           </div>
         </div>
 
+        <!-- 2023–24 · Winter Intern + Semester — Dr. Swarup Roy Choudhury (CYCLOPS) -->
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <span class="tl-year mono">2023&ndash;24</span>
+          <div class="tl-card">
+            <h3>Winter Intern &amp; Semester Project &middot; Plant Signal Transduction Lab</h3>
+            <p class="tl-inst">IISER Tirupati &middot; Dec 2023&ndash;May 2024</p>
+            <p>Investigated the <em>CYCLOPS</em> gene of <em>Arachis hypogaea</em>
+            and its role in Root Nodule Symbiosis (RNS) signalling pathways.</p>
+            <p class="tl-advisor">
+              Advisor: <strong>Dr.&nbsp;Swarup Roy Choudhury</strong>
+              &mdash; Asst. Professor, Dept. of Biology
+            </p>
+            <button class="tl-lab-btn"
+              data-lab-name="Plant Signal Transduction Lab"
+              data-advisor="Dr. Swarup Roy Choudhury, Assistant Professor, Department of Biology, IISER Tirupati"
+              data-lab-url="https://www.iisertirupati.ac.in/academics/faculty/biology/">
+              View Lab &#x2197;
+            </button>
+          </div>
+        </div>
+
+        <!-- 2024–25 · MS Thesis — Dr. Swarup Roy Choudhury -->
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <span class="tl-year mono">2024&ndash;25</span>
+          <div class="tl-card">
+            <h3>MS Thesis Researcher &middot; Plant Signal Transduction Lab</h3>
+            <p class="tl-inst">IISER Tirupati &middot; Jun 2024&ndash;Apr 2025</p>
+            <p>Deciphered the role of <em>CYCLOPS</em> in Root Nodule Symbiosis
+            and discovered possible downstream interactors in groundnut &mdash;
+            combining Y1H, BiFC, hairy root transformation, confocal &amp;
+            electron microscopy, and molecular docking.</p>
+            <p class="tl-advisor">
+              Advisor: <strong>Dr.&nbsp;Swarup Roy Choudhury</strong>
+              &mdash; Asst. Professor, Dept. of Biology
+            </p>
+            <button class="tl-lab-btn"
+              data-lab-name="Plant Signal Transduction Lab"
+              data-advisor="Dr. Swarup Roy Choudhury, Assistant Professor, Department of Biology, IISER Tirupati"
+              data-lab-url="https://www.iisertirupati.ac.in/academics/faculty/biology/">
+              View Lab &#x2197;
+            </button>
+          </div>
+        </div>
+
+        <!-- 2025 · BS-MS Degree Conferred -->
         <div class="tl-item tl-item--degree" id="degreeItem">
           <div class="tl-dot"></div>
           <span class="tl-year mono">2025</span>
           <div class="tl-card tl-card--degree" id="degreeCard">
             <h3>BS&ndash;MS Degree Conferred</h3>
+            <p class="tl-inst">IISER Tirupati &middot; May 2025</p>
             <p>Graduated from IISER Tirupati with a BS&ndash;MS Dual Degree
-            in Biology. Presented research at <strong>CSTT 2025</strong>.</p>
-            <span class="tl-degree-hint mono">hover for degree · click to zoom</span>
+            in Biology (Major: Plant Biology &amp; Evolution). Presented
+            MS thesis work at <strong>CSTT 2025</strong> (Chemistry for
+            Sustainability Conference), IISER Tirupati, July 2025.</p>
+            <span class="tl-degree-hint mono">hover for degree &middot; click to zoom</span>
             <div class="tl-degree-preview" id="degreePreview">
               <img src="assets/images/degree.jpg" alt="BS-MS Degree Certificate" />
             </div>
           </div>
         </div>
 
+        <!-- 2025– · SRF ICAR-IARI (Current) -->
         <div class="tl-item tl-item--active">
           <div class="tl-dot tl-dot--active"></div>
           <span class="tl-year mono">2025 &ndash;</span>
           <div class="tl-card tl-card--active">
             <h3>Senior Research Fellow &middot; ICAR&ndash;IARI</h3>
-            <p>Joined the Plant Molecular Physiology Lab at ICAR&ndash;IARI
-            to work on MD simulations and genome editing for
-            climate-resilient rice under Dr.&nbsp;Shivani Nagar.</p>
+            <p class="tl-inst">Plant Molecular Physiology Lab &middot; New Delhi</p>
+            <p>Working on MD simulations and genome editing for
+            climate-resilient rice under an ICAR-funded project
+            &mdash; <em>&ldquo;Enhancing Climate Resilience and Ensuring
+            Food Security with Genome Editing Tools&rdquo;</em> &mdash;
+            under Dr.&nbsp;Shivani Nagar.</p>
+            <button class="tl-lab-btn"
+              data-lab-name="Plant Molecular Physiology Lab — ICAR-IARI"
+              data-advisor="Dr. Shivani Nagar, Scientist, Division of Plant Physiology, ICAR-IARI, New Delhi"
+              data-lab-url="https://www.iari.res.in/index.php/divisions/division-of-plant-physiology">
+              View Lab &#x2197;
+            </button>
             <span class="tl-badge mono">Current Position</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SKILLS
+  ══════════════════════════════════════ -->
+  <section class="skills-section" id="skills">
+    <div class="container">
+      <p class="section-label reveal-up"><span class="mono">05 / Skills</span></p>
+      <h2 class="section-heading reveal-up">Tools &amp; <em>Expertise</em></h2>
+
+      <div class="sk-grid reveal-up">
+
+        <!-- Wet Lab -->
+        <div class="sk-category">
+          <div class="sk-cat-header">
+            <span class="sk-cat-icon">🧪</span>
+            <h3 class="sk-cat-title mono">// Wet Lab &amp; Experimental</h3>
+          </div>
+          <div class="sk-tags">
+            <span class="sk-tag">CRISPR&ndash;Cas Cloning</span>
+            <span class="sk-tag">Hairy Root Transformation</span>
+            <span class="sk-tag">Mutant Generation</span>
+            <span class="sk-tag">Confocal Microscopy</span>
+            <span class="sk-tag">Scanning Electron Microscopy</span>
+            <span class="sk-tag">EDX Analysis</span>
+            <span class="sk-tag">Y1H Experiments</span>
+            <span class="sk-tag">BiFC Experiments</span>
+            <span class="sk-tag">Tobacco Infiltration</span>
+            <span class="sk-tag">Biochemical Assays</span>
+            <span class="sk-tag">Bacterial Culturing</span>
+            <span class="sk-tag">Gene Expression &amp; Protein Work</span>
+          </div>
+        </div>
+
+        <!-- Computational -->
+        <div class="sk-category">
+          <div class="sk-cat-header">
+            <span class="sk-cat-icon">💻</span>
+            <h3 class="sk-cat-title mono">// Computational &amp; Bioinformatics</h3>
+          </div>
+          <div class="sk-tags">
+            <span class="sk-tag sk-tag--accent">GROMACS &middot; MD Simulations</span>
+            <span class="sk-tag sk-tag--accent">Python &amp; Biopython</span>
+            <span class="sk-tag sk-tag--accent">RNA-seq Analysis</span>
+            <span class="sk-tag sk-tag--accent">Whole Genome Analysis</span>
+            <span class="sk-tag">PyMOL &middot; Chimera &middot; Discovery Studio</span>
+            <span class="sk-tag">MEGA (Phylogenetics)</span>
+            <span class="sk-tag">ArcGIS</span>
+            <span class="sk-tag">R (Preliminary)</span>
+            <span class="sk-tag">Linux &middot; HPC &middot; SLURM</span>
+            <span class="sk-tag">Molecular Docking &amp; PPI</span>
+          </div>
+        </div>
+
+        <!-- Other -->
+        <div class="sk-category">
+          <div class="sk-cat-header">
+            <span class="sk-cat-icon">✦</span>
+            <h3 class="sk-cat-title mono">// Other &amp; Creative</h3>
+          </div>
+          <div class="sk-tags">
+            <span class="sk-tag">Krita (Digital Painting)</span>
+            <span class="sk-tag">Scientific Writing &amp; Reporting</span>
+            <span class="sk-tag">Poster Presentation</span>
+            <span class="sk-tag">Rodent Skeletal &amp; Dental ID</span>
+            <span class="sk-tag">Arts Club Coordination</span>
+          </div>
+
+          <div class="sk-cat-header sk-cat-header--mt">
+            <span class="sk-cat-icon">🌐</span>
+            <h3 class="sk-cat-title mono">// Languages</h3>
+          </div>
+          <div class="sk-tags">
+            <span class="sk-tag sk-tag--lang">Bengali <span class="sk-tag-sub">Native</span></span>
+            <span class="sk-tag sk-tag--lang">English <span class="sk-tag-sub">Professional</span></span>
+            <span class="sk-tag sk-tag--lang">Hindi <span class="sk-tag-sub">Bilingual</span></span>
+            <span class="sk-tag sk-tag--lang">Japanese <span class="sk-tag-sub">Elementary</span></span>
           </div>
         </div>
 
@@ -465,7 +657,7 @@
   ══════════════════════════════════════ -->
   <section class="contact" id="contact">
     <div class="container">
-      <p class="section-label reveal-up"><span class="mono">05 / Contact</span></p>
+      <p class="section-label reveal-up"><span class="mono">06 / Contact</span></p>
       <h2 class="section-heading reveal-up">Let&rsquo;s <em>Connect</em></h2>
 
       <p class="contact-intro reveal-up">
@@ -531,6 +723,43 @@
       <span class="mono footer-stack">Built with Three.js &middot; GSAP &middot; Vanilla JS</span>
     </div>
   </footer>
+
+  <!-- Video expand popup modal -->
+  <div class="degree-modal" id="videoModal" role="dialog" aria-modal="true" aria-label="MD Simulation Video">
+    <div class="degree-modal__backdrop" id="videoModalBackdrop"></div>
+    <div class="degree-modal__box degree-modal__box--video">
+      <button class="degree-modal__close" id="videoModalClose" aria-label="Close">&times;</button>
+      <iframe
+        id="videoModalFrame"
+        class="video-modal__iframe"
+        src=""
+        allow="autoplay; fullscreen"
+        allowfullscreen
+        frameborder="0"
+      ></iframe>
+    </div>
+  </div>
+
+  <!-- Lab / Advisor page popup modal -->
+  <div class="degree-modal lab-modal" id="labModal" role="dialog" aria-modal="true" aria-label="Lab Page">
+    <div class="degree-modal__backdrop" id="labModalBackdrop"></div>
+    <div class="degree-modal__box degree-modal__box--lab">
+      <button class="degree-modal__close" id="labModalClose" aria-label="Close">&times;</button>
+      <div class="lab-modal__header">
+        <h3 id="labModalName" class="lab-modal__name"></h3>
+        <p  id="labModalAdvisor" class="lab-modal__advisor mono"></p>
+      </div>
+      <div class="lab-modal__frame-wrap">
+        <iframe id="labModalFrame" class="lab-modal__iframe" src="" sandbox="allow-scripts allow-same-origin allow-forms" title="Lab Page"></iframe>
+        <div class="lab-modal__fallback" id="labModalFallback">
+          <p class="mono">This page cannot be displayed in a preview.</p>
+        </div>
+      </div>
+      <a class="btn btn--primary lab-modal__link" id="labModalLink" href="#" target="_blank" rel="noopener">
+        Open Lab Page &#x2197;
+      </a>
+    </div>
+  </div>
 
   <!-- Degree certificate popup modal -->
   <div class="degree-modal" id="degreeModal" role="dialog" aria-modal="true" aria-label="Degree Certificate">

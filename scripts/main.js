@@ -60,9 +60,9 @@
   /* ── 4. Social links — FILL IN YOUR REAL URLS BELOW ── */
   const SOCIAL = {
     github  : '',   // e.g. 'https://github.com/YourUsername'
-    linkedin: '',   // e.g. 'https://linkedin.com/in/YourProfile'
+    linkedin: 'https://www.linkedin.com/in/ayushman-mallick-68490922b/',
     scholar : '',   // e.g. 'https://scholar.google.com/citations?user=XXXX'
-    email   : '',   // e.g. 'mailto:you@example.com'
+    email   : 'mailto:ayushmania2002@gmail.com',
   };
 
   const setHref = (id, url) => {
@@ -85,7 +85,94 @@
   document.body.style.transition = 'opacity 0.45s ease';
   window.addEventListener('load', () => (document.body.style.opacity = '1'));
 
-  /* ── 7. Degree certificate — hover preview + click popup ── */
+  /* ── 7. Video expand popup ── */
+  (function initVideoPopup() {
+    const expandBtn = document.getElementById('videoExpandBtn');
+    const modal     = document.getElementById('videoModal');
+    const backdrop  = document.getElementById('videoModalBackdrop');
+    const closeBtn  = document.getElementById('videoModalClose');
+    const frame     = document.getElementById('videoModalFrame');
+    const VIDEO_SRC = 'https://drive.google.com/file/d/1UBNxH-qt3EM6c5r5zWEXwmunWhFg19Hf/preview';
+    if (!expandBtn || !modal) return;
+
+    function openVideo() {
+      frame.src = VIDEO_SRC;
+      modal.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeVideo() {
+      modal.classList.remove('is-open');
+      document.body.style.overflow = '';
+      setTimeout(() => { frame.src = ''; }, 300); // stop playback
+    }
+
+    expandBtn.addEventListener('click', openVideo);
+    expandBtn.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') openVideo(); });
+    backdrop?.addEventListener('click', closeVideo);
+    closeBtn?.addEventListener('click', closeVideo);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('is-open')) closeVideo();
+    });
+  })();
+
+  /* ── 8. Lab / advisor page popup ── */
+  (function initLabModal() {
+    const modal    = document.getElementById('labModal');
+    const backdrop = document.getElementById('labModalBackdrop');
+    const closeBtn = document.getElementById('labModalClose');
+    const frame    = document.getElementById('labModalFrame');
+    const fallback = document.getElementById('labModalFallback');
+    const nameEl   = document.getElementById('labModalName');
+    const advEl    = document.getElementById('labModalAdvisor');
+    const linkEl   = document.getElementById('labModalLink');
+    if (!modal) return;
+
+    document.querySelectorAll('.tl-lab-btn').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const labName = btn.dataset.labName  || 'Lab Page';
+        const advisor = btn.dataset.advisor  || '';
+        const url     = btn.dataset.labUrl   || '#';
+
+        nameEl.textContent = labName;
+        advEl.textContent  = advisor;
+        linkEl.href        = url;
+        fallback.classList.remove('visible');
+
+        // Try loading in iframe; show fallback if blocked
+        frame.src = url;
+        frame.onerror = () => fallback.classList.add('visible');
+        // Timeout fallback: if iframe doesn't trigger load in 5s, show fallback message
+        const t = setTimeout(() => fallback.classList.add('visible'), 5000);
+        frame.onload = () => {
+          clearTimeout(t);
+          // If X-Frame-Options blocks it, the iframe will load but be empty
+          try {
+            const doc = frame.contentDocument || frame.contentWindow?.document;
+            if (!doc || doc.body.innerHTML.trim() === '') fallback.classList.add('visible');
+          } catch(err) {
+            fallback.classList.add('visible'); // cross-origin: can't inspect
+          }
+        };
+
+        modal.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    function closeLabModal() {
+      modal.classList.remove('is-open');
+      document.body.style.overflow = '';
+      setTimeout(() => { frame.src = ''; }, 300);
+    }
+    backdrop?.addEventListener('click', closeLabModal);
+    closeBtn?.addEventListener('click', closeLabModal);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('is-open')) closeLabModal();
+    });
+  })();
+
+  /* ── 9. Degree certificate — hover preview + click popup ── */
   (function initDegreeCard() {
     const card    = document.getElementById('degreeCard');
     const modal   = document.getElementById('degreeModal');
@@ -112,7 +199,7 @@
     });
   })();
 
-  /* ── 8. Pixel-portrait hover effect ── */
+  /* ── 10. Pixel-portrait hover effect ── */
   const wrap  = document.getElementById('profilePhotoWrap');
   const photo = document.getElementById('profilePhoto');
 

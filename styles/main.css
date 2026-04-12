@@ -1268,3 +1268,240 @@ section { padding: var(--sp-3xl) 0; }
   color     : var(--bg);
   transform : scale(1.1);
 }
+
+/* ── 18. VIDEO EXPAND OVERLAY ─────────────────────────── */
+.r-video-overlay--expand {
+  position  : absolute;
+  inset     : 0;
+  z-index   : 5;
+  display   : flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding   : var(--sp-md);
+  background: transparent;
+  cursor    : pointer;
+  transition: background var(--dur-fast);
+}
+.r-video-overlay--expand:hover {
+  background: rgba(0,0,0,0.25);
+}
+.r-video-expand-hint {
+  font-size : 0.7rem;
+  color     : #fff;
+  background: rgba(0,0,0,0.55);
+  border    : 1px solid rgba(255,255,255,0.25);
+  padding   : 3px 10px;
+  border-radius: var(--r-pill);
+  opacity   : 0;
+  transform : translateY(4px);
+  transition: opacity var(--dur-fast), transform var(--dur-fast);
+  pointer-events: none;
+}
+.r-video-overlay--expand:hover .r-video-expand-hint {
+  opacity  : 1;
+  transform: translateY(0);
+}
+
+/* Video modal iframe box */
+.degree-modal__box--video {
+  max-width : min(92vw, 960px);
+  aspect-ratio: 16/9;
+  background: #000;
+  padding   : 0;
+  overflow  : hidden;
+}
+.video-modal__iframe {
+  width : 100%;
+  height: 100%;
+  display: block;
+  border : 0;
+}
+
+/* ── 19. LAB MODAL ─────────────────────────────────────── */
+.tl-lab-btn {
+  display      : inline-flex;
+  align-items  : center;
+  gap          : 4px;
+  margin-top   : var(--sp-sm);
+  font-family  : var(--f-mono);
+  font-size    : 0.7rem;
+  color        : var(--accent);
+  background   : transparent;
+  border       : 1px solid var(--accent);
+  border-radius: var(--r-pill);
+  padding      : 3px 10px;
+  cursor       : pointer;
+  transition   : background var(--dur-fast), color var(--dur-fast);
+}
+.tl-lab-btn:hover {
+  background: var(--accent);
+  color     : var(--bg);
+}
+
+.tl-advisor {
+  font-size  : 0.78rem;
+  color      : var(--text-2);
+  margin-top : var(--sp-xs);
+  font-style : italic;
+}
+.tl-inst {
+  font-family: var(--f-mono);
+  font-size  : 0.7rem;
+  color      : var(--accent);
+  opacity    : 0.7;
+  margin-bottom: var(--sp-xs);
+}
+
+/* Lab modal box */
+.degree-modal__box--lab {
+  max-width   : min(92vw, 860px);
+  width       : min(92vw, 860px);
+  display     : flex;
+  flex-direction: column;
+  gap         : var(--sp-md);
+  padding     : var(--sp-xl) var(--sp-xl) var(--sp-lg);
+  background  : var(--bg-surf);
+  max-height  : 88vh;
+  overflow    : hidden;
+}
+.lab-modal__header { flex-shrink: 0; }
+.lab-modal__name   {
+  font-size  : 1.1rem;
+  font-weight: 600;
+  color      : var(--text);
+  margin     : 0 0 4px;
+}
+.lab-modal__advisor {
+  font-size : 0.75rem;
+  color     : var(--text-2);
+  margin    : 0;
+}
+.lab-modal__frame-wrap {
+  position   : relative;
+  flex       : 1;
+  min-height : 0;
+  border-radius: var(--r-md);
+  overflow   : hidden;
+  background : var(--bg);
+  border     : 1px solid var(--bg-surf-2);
+}
+.lab-modal__iframe {
+  width  : 100%;
+  height : 100%;
+  min-height: 380px;
+  border : 0;
+  display: block;
+}
+.lab-modal__fallback {
+  position    : absolute;
+  inset       : 0;
+  display     : none;
+  align-items : center;
+  justify-content: center;
+  background  : var(--bg);
+  color       : var(--text-3);
+  font-size   : 0.8rem;
+  text-align  : center;
+  padding     : var(--sp-xl);
+}
+.lab-modal__fallback.visible {
+  display: flex;
+}
+.lab-modal__link {
+  flex-shrink: 0;
+  align-self : flex-start;
+  margin-top : 0;
+}
+
+/* ── 20. SKILLS SECTION ────────────────────────────────── */
+.skills-section {
+  padding: var(--sp-3xl) 0;
+  background: var(--bg-surf);
+}
+[data-theme="light"] .skills-section { background: #f0faf9; }
+
+.sk-grid {
+  display              : grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap                  : var(--sp-xl);
+  margin-top           : var(--sp-2xl);
+}
+
+.sk-category {
+  background   : var(--bg);
+  border       : 1px solid var(--bg-surf-2);
+  border-radius: var(--r-lg);
+  padding      : var(--sp-xl);
+  transition   : border-color var(--dur-med);
+}
+[data-theme="light"] .sk-category {
+  background: #fff;
+  border-color: rgba(0,0,0,0.08);
+}
+.sk-category:hover {
+  border-color: var(--accent);
+}
+
+.sk-cat-header {
+  display    : flex;
+  align-items: center;
+  gap        : var(--sp-sm);
+  margin-bottom: var(--sp-md);
+}
+.sk-cat-header--mt { margin-top: var(--sp-xl); }
+.sk-cat-icon {
+  font-size  : 1.1rem;
+  line-height: 1;
+}
+.sk-cat-title {
+  font-size   : 0.78rem;
+  font-weight : 500;
+  color       : var(--accent);
+  letter-spacing: 0.06em;
+  margin      : 0;
+}
+
+.sk-tags {
+  display  : flex;
+  flex-wrap: wrap;
+  gap      : var(--sp-sm);
+}
+
+.sk-tag {
+  display      : inline-flex;
+  align-items  : center;
+  gap          : 4px;
+  font-size    : 0.72rem;
+  font-family  : var(--f-body);
+  color        : var(--text-2);
+  background   : var(--bg-surf);
+  border       : 1px solid var(--bg-surf-2);
+  border-radius: var(--r-pill);
+  padding      : 3px 10px 4px;
+  transition   : border-color var(--dur-fast), color var(--dur-fast);
+}
+[data-theme="light"] .sk-tag {
+  background  : #f0faf9;
+  border-color: rgba(0,0,0,0.1);
+  color       : #334155;
+}
+.sk-tag:hover {
+  border-color: var(--accent);
+  color       : var(--accent);
+}
+.sk-tag--accent {
+  border-color: var(--accent);
+  color       : var(--accent);
+  background  : var(--accent-glow);
+}
+.sk-tag--lang {
+  gap         : 6px;
+  padding-right: 8px;
+}
+.sk-tag-sub {
+  font-size   : 0.62rem;
+  opacity     : 0.6;
+  font-family : var(--f-mono);
+  border-left : 1px solid currentColor;
+  padding-left: 6px;
+}
