@@ -154,6 +154,7 @@
 
     const containers = [
       document.getElementById('heroBgSlideshow'),
+      document.getElementById('researchBgSlideshow'),
       document.getElementById('journeyBgSlideshow'),
     ].filter(Boolean);
     if (!containers.length) return;
@@ -197,7 +198,30 @@
       idx = next;
     }
 
-    setInterval(tick, 4500);
+    setInterval(tick, 3000);
+  })();
+
+  /* ── Timeline centre-line scroll fill (Arnab-style) ── */
+  (function initTimelineLine() {
+    const track  = document.getElementById('tlTrack');
+    const fill   = document.getElementById('tlLineFill');
+    const section = document.getElementById('timeline');
+    if (!track || !fill || !section) return;
+
+    function update() {
+      const tRect = track.getBoundingClientRect();
+      const sRect = section.getBoundingClientRect();
+      const centreX = tRect.left + tRect.width / 2 - 1;
+
+      // Show only when timeline section is in view
+      const inView = sRect.top < window.innerHeight && sRect.bottom > 0;
+      fill.style.opacity = inView ? '1' : '0';
+      fill.style.left    = centreX + 'px';
+    }
+
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
   })();
 
 })();

@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ayushman Mallick — Curriculum Vitae</title>
+  <style>
+    /* ── Reset & Base ─────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Times New Roman", Georgia, serif;
+      font-size: 10.5pt;
+      line-height: 1.55;
+      color: #111;
+      background: #fafaf7;
+    }
+
+    /* ── Nav bar (screen only) ────────────────────── */
+    #nav-bar {
+      background: #f0ece4;
+      border-bottom: 1px solid #d0ccc4;
+      padding: 0.45rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: Arial, sans-serif;
+      font-size: 9pt;
+    }
+    #nav-bar a {
+      color: #3a5a3a;
+      text-decoration: none;
+      font-weight: bold;
+      letter-spacing: 0.02em;
+    }
+    #nav-bar a:hover { text-decoration: underline; }
+    #print-btn {
+      background: #3a5a3a;
+      color: #fff;
+      border: none;
+      padding: 0.3rem 0.9rem;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 9pt;
+      font-family: Arial, sans-serif;
+    }
+    #print-btn:hover { background: #2a4a2a; }
+
+    /* ── CV Wrapper ───────────────────────────────── */
+    #cv {
+      max-width: 750px;
+      margin: 1.5rem auto 3rem auto;
+      padding: 2cm 2cm;
+      background: #fff;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.10);
+    }
+
+    /* ── Header ───────────────────────────────────── */
+    .cv-name {
+      font-size: 20pt;
+      font-weight: bold;
+      text-align: center;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.3rem;
+    }
+    .cv-affil {
+      text-align: center;
+      font-size: 9.5pt;
+      font-style: italic;
+      margin-bottom: 0.2rem;
+    }
+    .cv-contact {
+      text-align: center;
+      font-size: 8.8pt;
+      color: #222;
+      margin-bottom: 1.1rem;
+      line-height: 1.7;
+    }
+    .cv-contact a {
+      color: #222;
+      text-decoration: none;
+    }
+    .cv-contact a:hover { text-decoration: underline; }
+
+    /* ── Section Headers ──────────────────────────── */
+    .section-header {
+      font-size: 10.5pt;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 1.25rem;
+      margin-bottom: 0.15rem;
+      padding-bottom: 0.1rem;
+      border-bottom: 1.5px solid #111;
+    }
+
+    /* ── General paragraph / body text ───────────── */
+    .cv-body {
+      margin-top: 0.4rem;
+      text-align: justify;
+    }
+
+    /* ── Education table layout ───────────────────── */
+    .edu-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 0.5rem;
+    }
+    .edu-table td {
+      vertical-align: top;
+      padding: 0.08rem 0;
+    }
+    .edu-table .edu-left {
+      width: 74%;
+      padding-right: 0.5rem;
+    }
+    .edu-table .edu-right {
+      width: 26%;
+      text-align: right;
+      font-style: italic;
+      white-space: nowrap;
+      font-size: 9.5pt;
+      color: #333;
+    }
+    .edu-inst {
+      font-weight: bold;
+    }
+    .edu-dept {
+      font-size: 9.5pt;
+    }
+    .edu-sep {
+      height: 0.55rem;
+    }
+
+    /* ── Experience entries ───────────────────────── */
+    .exp-entry {
+      margin-top: 0.65rem;
+    }
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 0.2rem;
+    }
+    .exp-title {
+      font-weight: bold;
+      font-size: 10.5pt;
+    }
+    .exp-date {
+      font-style: italic;
+      font-size: 9.5pt;
+      color: #333;
+      white-space: nowrap;
+    }
+    .exp-lab {
+      font-style: italic;
+      font-size: 9.5pt;
+      margin-top: 0.05rem;
+    }
+    .exp-proj {
+      font-size: 9.5pt;
+      margin-top: 0.05rem;
+    }
+    .exp-sup {
+      font-size: 9.5pt;
+      margin-top: 0.02rem;
+    }
+    .exp-bullets {
+      margin-top: 0.2rem;
+      margin-left: 1.2rem;
+      font-size: 9.8pt;
+    }
+    .exp-bullets li {
+      margin-bottom: 0.1rem;
+    }
+
+    /* ── Skills ───────────────────────────────────── */
+    .skills-row {
+      margin-top: 0.45rem;
+      font-size: 9.8pt;
+    }
+    .skills-row strong {
+      font-size: 9.8pt;
+    }
+
+    /* ── Conferences / Certs / Positions ─────────── */
+    .item-entry {
+      margin-top: 0.55rem;
+    }
+    .item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 0.2rem;
+    }
+    .item-title {
+      font-weight: bold;
+      font-size: 10.5pt;
+    }
+    .item-date {
+      font-style: italic;
+      font-size: 9.5pt;
+      color: #333;
+      white-space: nowrap;
+    }
+    .item-sub {
+      font-size: 9.5pt;
+      font-style: italic;
+    }
+    .item-body {
+      font-size: 9.8pt;
+      margin-top: 0.1rem;
+    }
+    .item-bullets {
+      margin-top: 0.15rem;
+      margin-left: 1.2rem;
+      font-size: 9.8pt;
+    }
+    .item-bullets li { margin-bottom: 0.1rem; }
+
+    /* ── Certifications list ──────────────────────── */
+    .cert-list {
+      margin-top: 0.4rem;
+      margin-left: 1.2rem;
+      font-size: 9.8pt;
+    }
+    .cert-list li { margin-bottom: 0.15rem; }
+
+    /* ── Languages & Extras ───────────────────────── */
+    .simple-body {
+      margin-top: 0.4rem;
+      font-size: 9.8pt;
+    }
+
+    /* ── Print styles ─────────────────────────────── */
+    @media print {
+      body {
+        background: #fff;
+        font-size: 10pt;
+        margin: 0;
+      }
+      #nav-bar { display: none; }
+      #cv {
+        max-width: 100%;
+        margin: 0;
+        padding: 1.5cm 1.8cm;
+        box-shadow: none;
+      }
+      a { color: #000 !important; text-decoration: none !important; }
+      .section-header { border-bottom-color: #000; }
+      .exp-entry, .item-entry { page-break-inside: avoid; }
+    }
+
+    @page {
+      size: A4;
+      margin: 1.5cm 1.8cm;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Nav bar (hidden in print) -->
+<div id="nav-bar">
+  <a href="index.html">&larr; Back to Portfolio</a>
+  <button id="print-btn" onclick="window.print()">Print / Save as PDF</button>
+</div>
+
+<!-- CV container -->
+<div id="cv">
+
+  <!-- ── Header ── -->
+  <div class="cv-name">Ayushman Mallick</div>
+  <div class="cv-affil">Plant Molecular Physiology Lab &mdash; Division of Plant Physiology &mdash; ICAR-IARI, New Delhi</div>
+  <div class="cv-contact">
+    &#9671; <a href="mailto:ayushmania2002@gmail.com">ayushmania2002@gmail.com</a>
+    &nbsp;&#9671;&nbsp; <a href="https://linkedin.com/in/ayushman-mallick-68490922b/" target="_blank">linkedin.com/in/ayushman-mallick-68490922b/</a>
+    &nbsp;&#9671;&nbsp; ORCID: <a href="https://orcid.org/0009-0004-5774-450X" target="_blank">0009-0004-5774-450X</a><br>
+    &#9671; <a href="https://x.com/AyushmanMallick" target="_blank">x.com/AyushmanMallick</a>
+    &nbsp;&#9671;&nbsp; <a href="https://ayushmania2002.github.io" target="_blank">ayushmania2002.github.io</a>
+  </div>
+
+  <!-- ── Research Profile ── -->
+  <div class="section-header">Research Profile</div>
+  <p class="cv-body">
+    Plant biologist with expertise in molecular genetics, plant&ndash;microbe interactions, and computational structural biology.
+    Currently serving as Senior Research Fellow at ICAR-IARI, New Delhi, contributing computational and molecular biology insights
+    to an ICAR-funded genome-editing project aimed at engineering climate-resilient rice. MS dissertation focused on characterising
+    the transcription factor CYCLOPS in <em>Arachis hypogaea</em> (groundnut) and mapping its downstream interactors in the root
+    nodule symbiosis (RNS) signalling network, employing site-directed mutagenesis, RNAi-based mutant generation, hairy root
+    transformation, confocal and electron microscopy, molecular docking, and <em>in silico</em> structural analyses.
+  </p>
+
+  <!-- ── Education ── -->
+  <div class="section-header">Education</div>
+  <table class="edu-table">
+    <tbody>
+      <tr>
+        <td class="edu-left">
+          <span class="edu-inst">Indian Institute of Science Education and Research, Tirupati, India</span>
+        </td>
+        <td class="edu-right">Aug 2020 &ndash; Jul 2025</td>
+      </tr>
+      <tr>
+        <td class="edu-left edu-dept">Department of Biology, Integrated BS-MS Dual Degree</td>
+        <td class="edu-right"></td>
+      </tr>
+      <tr>
+        <td class="edu-left edu-dept">Specialisation: Plant Biology &amp; Evolution</td>
+        <td class="edu-right"></td>
+      </tr>
+      <tr>
+        <td class="edu-left edu-dept">MS Dissertation: <em>Deciphering the Role of CYCLOPS in Root Nodule Symbiosis and Identifying Downstream Interactors in Arachis hypogaea</em></td>
+        <td class="edu-right"></td>
+      </tr>
+      <tr>
+        <td class="edu-left edu-dept">Supervisor: Dr. Swarup Roy Choudhury, Assistant Professor, Department of Biology</td>
+        <td class="edu-right"></td>
+      </tr>
+
+      <tr class="edu-sep"><td colspan="2"></td></tr>
+
+      <tr>
+        <td class="edu-left">
+          <span class="edu-inst">Bidhannagar Municipal School, Kolkata, West Bengal, India</span>
+        </td>
+        <td class="edu-right">Jul 2018 &ndash; Jul 2020</td>
+      </tr>
+      <tr>
+        <td class="edu-left edu-dept">Higher Secondary (Class XI&ndash;XII), WBCHSE Board &mdash; Passed with Grade A</td>
+        <td class="edu-right"></td>
+      </tr>
+
+      <tr class="edu-sep"><td colspan="2"></td></tr>
+
+      <tr>
+        <td class="edu-left">
+          <span class="edu-inst">Bangiya Sahitya Kala Kendra, Kolkata</span>
+        </td>
+        <td class="edu-right">2012</td>
+      </tr>
+      <tr>
+        <td class="edu-left edu-dept">PP-1 Certificate in Painting &mdash; First Division with Distinction</td>
+        <td class="edu-right"></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ── Research Experience ── -->
+  <div class="section-header">Research Experience</div>
+
+  <div class="exp-entry">
+    <div class="exp-header">
+      <span class="exp-title">Senior Research Fellow &mdash; ICAR-Indian Agricultural Research Institute, New Delhi</span>
+      <span class="exp-date">Jan 2026 &ndash; present</span>
+    </div>
+    <div class="exp-lab">Plant Molecular Physiology Lab, Division of Plant Physiology</div>
+    <div class="exp-proj">Project: &ldquo;Enhancing Climate Resilience and Ensuring Food Security with Genome Editing Tools&rdquo; (ICAR-funded, EFC-GET project)</div>
+    <div class="exp-sup">Supervisor: Dr. Shivani Nagar, Scientist, Division of Plant Physiology, ICAR-IARI</div>
+    <ul class="exp-bullets">
+      <li>Contributing computational and molecular biology insights toward CRISPR-based genome editing for climate-resilient rice</li>
+      <li>Conducting all-atom molecular dynamics simulations of the rice ABA receptor complex PYL6&ndash;PP2C51 using GROMACS on HPC clusters (Linux/SLURM)</li>
+      <li>Developing Python-based sequencing analysis pipelines and metagenomic workflows for project objectives</li>
+      <li>Performing protein&ndash;protein interaction assays to identify and validate molecular editing targets for drought and heat tolerance in <em>Oryza sativa</em></li>
+    </ul>
+  </div>
+
+  <div class="exp-entry">
+    <div class="exp-header">
+      <span class="exp-title">MS Dissertation Researcher &mdash; IISER Tirupati</span>
+      <span class="exp-date">Jun 2024 &ndash; Apr 2025</span>
+    </div>
+    <div class="exp-lab">Plant Signaling Lab, Department of Biology</div>
+    <div class="exp-sup">Supervisor: Dr. Swarup Roy Choudhury, Assistant Professor, Department of Biology, IISER Tirupati</div>
+    <ul class="exp-bullets">
+      <li>Characterised the transcription factor CYCLOPS in <em>Arachis hypogaea</em> and mapped its role in the CCaMK&ndash;CYCLOPS signalling axis governing root nodule symbiosis</li>
+      <li>Employed site-directed mutagenesis, RNAi-based mutant generation in groundnut, BiFC interaction assays, hairy root transformation, confocal and scanning electron microscopy, molecular docking, and <em>in silico</em> structural analyses</li>
+      <li>Discovered candidate downstream interactors of CYCLOPS in the RNS signalling pathway</li>
+    </ul>
+  </div>
+
+  <div class="exp-entry">
+    <div class="exp-header">
+      <span class="exp-title">Winter Intern &amp; Semester Project Researcher &mdash; IISER Tirupati</span>
+      <span class="exp-date">Dec 2023 &ndash; May 2024</span>
+    </div>
+    <div class="exp-lab">Plant Signaling Lab, Department of Biology</div>
+    <div class="exp-sup">Supervisor: Dr. Swarup Roy Choudhury, Assistant Professor, Department of Biology, IISER Tirupati</div>
+    <ul class="exp-bullets">
+      <li>Investigated the CYCLOPS gene of <em>Arachis hypogaea</em> and its functional role in root nodule symbiosis signalling pathways</li>
+    </ul>
+  </div>
+
+  <div class="exp-entry">
+    <div class="exp-header">
+      <span class="exp-title">Semester Project Researcher &mdash; IISER Tirupati</span>
+      <span class="exp-date">Sep 2023 &ndash; Nov 2023</span>
+    </div>
+    <div class="exp-lab">Plant Stress Biology Lab, Department of Biology</div>
+    <div class="exp-sup">Supervisor: Dr. Annapurna Devi Allu, Associate Professor, Department of Biology, IISER Tirupati</div>
+    <ul class="exp-bullets">
+      <li>Worked on two novel identified genes of <em>Arabidopsis thaliana</em>; presented a poster on CRISPR-Cas cloning strategies and genetic modifications</li>
+    </ul>
+  </div>
+
+  <div class="exp-entry">
+    <div class="exp-header">
+      <span class="exp-title">Summer Intern Researcher &mdash; IISER Tirupati</span>
+      <span class="exp-date">May 2023 &ndash; Jul 2023</span>
+    </div>
+    <div class="exp-lab">Plant Signaling Lab, Department of Biology</div>
+    <div class="exp-sup">Supervisor: Dr. Swarup Roy Choudhury, Assistant Professor, Department of Biology, IISER Tirupati</div>
+    <ul class="exp-bullets">
+      <li>Worked on the AhCCaMK gene of <em>Arachis hypogaea</em>; studied and documented nodulation characteristics of plant roots under genetic modification</li>
+    </ul>
+  </div>
+
+  <div class="exp-entry">
+    <div class="exp-header">
+      <span class="exp-title">Summer Intern Researcher &mdash; IISER Tirupati</span>
+      <span class="exp-date">May 2022 &ndash; Jul 2022</span>
+    </div>
+    <div class="exp-lab">Sciurid Lab, Department of Biology</div>
+    <div class="exp-sup">Supervisor: Dr. Nandini Rajamani, Assistant Professor, Department of Biology, IISER Tirupati</div>
+    <ul class="exp-bullets">
+      <li>Investigated the diet of small cat varieties in Central India; performed identification and classification of rodent skeletal and dental anatomy from jungle cat faecal samples</li>
+    </ul>
+  </div>
+
+  <!-- ── Technical Skills ── -->
+  <div class="section-header">Technical Skills</div>
+
+  <div class="skills-row">
+    <strong>Wet Lab:</strong>
+    Molecular cloning &amp; gene expression &middot; CRISPR-Cas editing strategies &middot; Site-directed mutagenesis &middot;
+    RNAi-based mutant generation &middot; Hairy root transformation &middot; BiFC &amp; protein&ndash;protein interaction assays &middot;
+    Tobacco infiltration &middot; Confocal microscopy &middot; Scanning electron microscopy (SEM) &middot;
+    Energy dispersive X-ray (EDX) analysis &middot; Biochemical &amp; bacterial assays
+  </div>
+
+  <div class="skills-row" style="margin-top:0.3rem;">
+    <strong>Computational:</strong>
+    GROMACS (all-atom MD simulations) &middot; Python &amp; Biopython &middot; RNA-seq analysis &middot;
+    Whole genome analysis &middot; PyMOL / UCSF Chimera / Discovery Studio &middot; MEGA (phylogenetics) &middot;
+    ArcGIS &middot; Molecular docking &amp; PPI &middot; Linux &middot; HPC (SLURM) &middot;
+    Blender (biological molecular animation)
+  </div>
+
+  <div class="skills-row" style="margin-top:0.3rem;">
+    <strong>Other:</strong>
+    Digital art &amp; animation &middot; Guitar &middot; Rodent skeletal &amp; dental identification
+  </div>
+
+  <!-- ── Conferences & Workshops ── -->
+  <div class="section-header">Conferences &amp; Workshops</div>
+
+  <div class="item-entry">
+    <div class="item-header">
+      <span class="item-title">CSTT 2025 &mdash; Chemistry for Sustainability Transition and Technology</span>
+      <span class="item-date">July 2025</span>
+    </div>
+    <div class="item-sub">IISER Tirupati</div>
+    <div class="item-body">Attended the multidisciplinary conference bridging chemistry, sustainability, and modern biotechnology at IISER Tirupati.</div>
+  </div>
+
+  <!-- ── Positions of Responsibility ── -->
+  <div class="section-header">Positions of Responsibility</div>
+
+  <div class="item-entry">
+    <div class="item-header">
+      <span class="item-title">Arts Club Coordinator &mdash; IISER Tirupati</span>
+      <span class="item-date">2022&ndash;2023</span>
+    </div>
+    <ul class="item-bullets">
+      <li>Led and managed the IISER Tirupati Arts Club; coordinated cultural events, fests, inter-college competitions, and the club&rsquo;s social media outreach</li>
+    </ul>
+  </div>
+
+  <!-- ── Certifications & Achievements ── -->
+  <div class="section-header">Certifications &amp; Achievements</div>
+
+  <ul class="cert-list">
+    <li>Basic Python Coding &mdash; Completed with Grade A (Semester 5, IISER Tirupati, 2022)</li>
+    <li>PP-1 Painting Certification &mdash; First Division with Distinction, Bangiya Sahitya Kala Kendra (2012)</li>
+    <li>1st Place &mdash; Group Melodrama, 8th Shishu Kishore Utsav (2016), organised by Shishu Kishore Academy, Govt. of West Bengal</li>
+    <li>Participated in Republic Day Parade under office of Sub Divisional Magistrate and Sub Divisional Officer, Govt. of West Bengal (2015, 2016)</li>
+    <li>Participated in inter-institutional marathon competitions at IITs, IISM and other institutions (2023&ndash;2025)</li>
+  </ul>
+
+  <!-- ── Languages ── -->
+  <div class="section-header">Languages</div>
+
+  <div class="simple-body">
+    Bengali (Native) &nbsp;&middot;&nbsp; English (Full Professional) &nbsp;&middot;&nbsp; Hindi (Bilingual) &nbsp;&middot;&nbsp; Japanese (Elementary)
+  </div>
+
+  <!-- ── Extra-Curricular ── -->
+  <div class="section-header">Extra-Curricular</div>
+
+  <ul class="cert-list" style="margin-top:0.4rem;">
+    <li>Plays guitar (trained at Bangiya Sangeet Parishad)</li>
+    <li>Gardening and botanical illustration</li>
+    <li>Light novel reading</li>
+    <li>Football</li>
+  </ul>
+
+</div><!-- end #cv -->
+
+</body>
+</html>

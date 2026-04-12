@@ -331,11 +331,11 @@ section { padding: var(--sp-3xl) 0; }
   background-position: center;
   background-repeat  : no-repeat;
   opacity            : 0;
-  transition         : opacity 2s ease;
+  transition         : opacity 1s ease;
 }
 
-[data-theme="dark"]  .bg-slide--active { opacity: 0.22; }
-[data-theme="light"] .bg-slide--active { opacity: 0.14; }
+[data-theme="dark"]  .bg-slide--active { opacity: 0.38; }
+[data-theme="light"] .bg-slide--active { opacity: 0.25; }
 
 .hero {
   position  : relative;
@@ -654,6 +654,8 @@ section { padding: var(--sp-3xl) 0; }
 .skill-list li:last-child   { border-bottom: none; }
 
 /* ── 10. RESEARCH ─────────────────────────────────────── */
+.research { position: relative; overflow: hidden; }
+.research > .container { position: relative; z-index: 1; }
 
 /* Grid: featured card spans full width, then 2-col below */
 .research-grid {
@@ -1023,13 +1025,29 @@ section { padding: var(--sp-3xl) 0; }
   grid-row      : 2;
   justify-self  : center;
   text-align    : center;
-  font-size     : .68rem;
+  font-size     : .9rem;
+  font-weight   : 700;
+  font-family   : var(--f-display);
   color         : var(--accent);
-  letter-spacing: .1em;
-  margin-top    : 6px;
+  letter-spacing: .06em;
+  margin-top    : 8px;
   position      : relative;
   top           : auto;
   left          : auto;
+}
+
+/* Animated center line fill */
+.tl-line-fill {
+  position        : fixed;
+  top             : 0;
+  width           : 2px;
+  height          : 50vh;
+  background      : linear-gradient(to bottom, transparent 0%, var(--accent) 70%, var(--accent) 100%);
+  pointer-events  : none;
+  z-index         : 10;
+  opacity         : 0;
+  transition      : opacity 0.3s ease, left 0.05s linear;
+  box-shadow      : 0 0 8px var(--accent);
 }
 
 /* Odd items: card in left column */
