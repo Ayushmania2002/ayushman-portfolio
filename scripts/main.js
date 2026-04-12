@@ -172,30 +172,71 @@
     });
   })();
 
-  /* ── 9. Degree certificate — hover preview + click popup ── */
-  (function initDegreeCard() {
-    const card    = document.getElementById('degreeCard');
-    const modal   = document.getElementById('degreeModal');
-    const backdrop = document.getElementById('degreeModalBackdrop');
-    const closeBtn = document.getElementById('degreeModalClose');
-    if (!card || !modal) return;
+  /* ── 9. Unified gallery modal (timeline gallery cards + CRISPR research card) ── */
+  (function initGalleryModal() {
+    const modal    = document.getElementById('galleryModal');
+    const backdrop = document.getElementById('galleryModalBackdrop');
+    const closeBtn = document.getElementById('galleryModalClose');
+    const imgEl    = document.getElementById('galleryModalImg');
+    const prevBtn  = document.getElementById('galleryPrev');
+    const nextBtn  = document.getElementById('galleryNext');
+    const countEl  = document.getElementById('galleryCount');
+    const navEl    = document.getElementById('galleryNav');
+    if (!modal) return;
 
-    function openModal(e) {
-      e.stopPropagation();
+    let images = [];
+    let current = 0;
+
+    function showImg(idx) {
+      current = (idx + images.length) % images.length;
+      imgEl.src = images[current].src;
+      imgEl.alt = images[current].alt;
+      if (countEl) countEl.textContent = `${current + 1} / ${images.length}`;
+    }
+
+    function openGallery(imgs, startIdx) {
+      images  = imgs;
+      current = startIdx || 0;
+      showImg(current);
+      if (navEl) navEl.classList.toggle('hidden', images.length <= 1);
       modal.classList.add('is-open');
       document.body.style.overflow = 'hidden';
-      closeBtn?.focus();
-    }
-    function closeModal() {
-      modal.classList.remove('is-open');
-      document.body.style.overflow = '';
     }
 
-    card.addEventListener('click', openModal);
-    backdrop?.addEventListener('click', closeModal);
-    closeBtn?.addEventListener('click', closeModal);
+    function closeGallery() {
+      modal.classList.remove('is-open');
+      document.body.style.overflow = '';
+      setTimeout(() => { imgEl.src = ''; images = []; }, 300);
+    }
+
+    // Timeline gallery cards
+    document.querySelectorAll('.tl-card--gallery').forEach((card) => {
+      card.addEventListener('click', (e) => {
+        if (e.target.closest('.tl-lab-btn')) return; // lab btn has its own handler
+        const raw  = card.dataset.galleryImgs || '';
+        const alt  = card.dataset.galleryAlt  || '';
+        const srcs = raw.split('|').map(s => s.trim()).filter(Boolean);
+        if (!srcs.length) return;
+        const imgs = srcs.map((src, i) => ({ src, alt: `${alt} — ${i + 1}` }));
+        openGallery(imgs, 0);
+      });
+    });
+
+    // CRISPR research card
+    const crisprCard = document.getElementById('crisprCard');
+    crisprCard?.addEventListener('click', () => {
+      openGallery([{ src: 'assets/images/crispr-md.png', alt: 'CRISPR genome editing — rice climate resilience' }], 0);
+    });
+
+    prevBtn?.addEventListener('click', (e) => { e.stopPropagation(); showImg(current - 1); });
+    nextBtn?.addEventListener('click', (e) => { e.stopPropagation(); showImg(current + 1); });
+    backdrop?.addEventListener('click', closeGallery);
+    closeBtn?.addEventListener('click', closeGallery);
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+      if (!modal.classList.contains('is-open')) return;
+      if (e.key === 'Escape')      closeGallery();
+      if (e.key === 'ArrowLeft')   showImg(current - 1);
+      if (e.key === 'ArrowRight')  showImg(current + 1);
     });
   })();
 
