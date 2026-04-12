@@ -15,6 +15,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="styles/main.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 </head>
 <body>
 
@@ -39,6 +40,7 @@
         <li><a href="#timeline"     class="nav-link">Journey</a></li>
         <li><a href="#skills"       class="nav-link">Skills</a></li>
         <li><a href="#contact"      class="nav-link">Contact</a></li>
+        <li><a href="#reach"        class="nav-link">Find Me</a></li>
       </ul>
 
       <div class="nav-actions">
@@ -60,6 +62,7 @@
       <li><a href="#timeline">Journey</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#contact">Contact</a></li>
+      <li><a href="#reach">Find Me</a></li>
     </ul>
   </div>
   <div class="nav-mobile-backdrop" id="navBackdrop"></div>
@@ -846,6 +849,89 @@
     </div>
   </section>
 
+  <!-- ══════════════════════════════════════
+       WHERE CAN YOU FIND ME
+  ══════════════════════════════════════ -->
+  <section class="reach-section" id="reach">
+    <div class="container">
+      <p class="section-label reveal-up"><span class="mono">07 / Find Me</span></p>
+      <h2 class="section-heading reveal-up">Where can you <em>find me?</em></h2>
+
+      <div class="reach-grid">
+
+        <!-- ── Tirupati ── -->
+        <div class="reach-card reveal-up" id="rc-tirupati">
+          <div class="reach-map-wrap">
+            <div class="reach-map" id="rm-tirupati"></div>
+            <div class="reach-map-overlay"></div>
+          </div>
+          <div class="reach-card-body">
+            <div class="reach-location-row">
+              <span class="reach-dot"></span>
+              <span class="reach-city-name">Tirupati, India</span>
+            </div>
+            <button class="reach-reveal-btn" aria-expanded="false">
+              Find me here <span class="reach-arrow">&#x2192;</span>
+            </button>
+            <div class="reach-details-panel" aria-hidden="true">
+              <p class="reach-inst-name">IISER Tirupati</p>
+              <p class="reach-inst-sub">BS&ndash;MS Dual Degree &middot; 2020&ndash;2025</p>
+              <p class="reach-inst-sub">Dept. of Biology, Andhra Pradesh</p>
+              <a href="https://maps.google.com/?q=IISER+Tirupati" target="_blank" rel="noopener" class="reach-directions">&#x2197; Get directions</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Kolkata ── -->
+        <div class="reach-card reveal-up" id="rc-kolkata" data-delay="100">
+          <div class="reach-map-wrap">
+            <div class="reach-map" id="rm-kolkata"></div>
+            <div class="reach-map-overlay"></div>
+          </div>
+          <div class="reach-card-body">
+            <div class="reach-location-row">
+              <span class="reach-dot"></span>
+              <span class="reach-city-name">Kolkata, India</span>
+            </div>
+            <button class="reach-reveal-btn" aria-expanded="false">
+              Find me here <span class="reach-arrow">&#x2192;</span>
+            </button>
+            <div class="reach-details-panel" aria-hidden="true">
+              <p class="reach-inst-name">Bidhannagar, Kolkata</p>
+              <p class="reach-inst-sub">Hometown &middot; West Bengal</p>
+              <p class="reach-inst-sub">Salt Lake City, Bidhannagar</p>
+              <a href="https://maps.google.com/?q=Bidhannagar+Kolkata+West+Bengal" target="_blank" rel="noopener" class="reach-directions">&#x2197; Get directions</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── New Delhi / ICAR-IARI ── -->
+        <div class="reach-card reveal-up" id="rc-delhi" data-delay="200">
+          <div class="reach-map-wrap">
+            <div class="reach-map" id="rm-delhi"></div>
+            <div class="reach-map-overlay"></div>
+          </div>
+          <div class="reach-card-body">
+            <div class="reach-location-row">
+              <span class="reach-dot"></span>
+              <span class="reach-city-name">New Delhi, India</span>
+            </div>
+            <button class="reach-reveal-btn" aria-expanded="false">
+              Find me here <span class="reach-arrow">&#x2192;</span>
+            </button>
+            <div class="reach-details-panel" aria-hidden="true">
+              <p class="reach-inst-name">ICAR&ndash;IARI</p>
+              <p class="reach-inst-sub">Senior Research Fellow &middot; 2026&ndash;present</p>
+              <p class="reach-inst-sub">Plant Molecular Physiology Lab, Pusa</p>
+              <a href="https://maps.google.com/?q=ICAR+IARI+Pusa+New+Delhi" target="_blank" rel="noopener" class="reach-directions">&#x2197; Get directions</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- ══ Footer ══ -->
   <footer class="footer">
     <div class="container footer-inner">
@@ -904,10 +990,12 @@
   <script src="https://cdn.jsdelivr.net/npm/three@0.161.0/build/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="scripts/cursor.js"></script>
   <script src="scripts/sphere.js"></script>
   <script src="scripts/animations.js"></script>
   <script src="scripts/main.js"></script>
+  <script src="scripts/reach.js"></script>
 
 </body>
 </html>

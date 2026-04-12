@@ -1228,7 +1228,164 @@ section { padding: var(--sp-3xl) 0; }
   border-top   : 1px solid var(--border);
 }
 
-/* ── 14. FOOTER ───────────────────────────────────────── */
+/* ── 14. WHERE CAN YOU FIND ME ────────────────────────── */
+.reach-section { padding: var(--sp-3xl) 0; }
+
+.reach-grid {
+  display              : grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap                  : var(--sp-lg);
+  margin-top           : var(--sp-2xl);
+}
+
+.reach-card {
+  border       : 1px solid var(--border);
+  border-radius: var(--r-lg);
+  overflow     : hidden;
+  background   : var(--bg-surf);
+  cursor       : pointer;
+  transition   :
+    border-color var(--dur-med),
+    box-shadow   var(--dur-med),
+    transform    var(--dur-med);
+}
+
+.reach-card:hover {
+  border-color: var(--accent);
+  box-shadow  : 0 8px 32px var(--accent-glow);
+  transform   : translateY(-5px);
+}
+
+.reach-map-wrap {
+  position: relative;
+  height  : 215px;
+  overflow: hidden;
+}
+
+.reach-map { width: 100%; height: 100%; }
+
+/* Leaflet attribution cleanup */
+.reach-map .leaflet-control-attribution { display: none; }
+
+/* Gradient fade at bottom of map into card */
+.reach-map-overlay {
+  position      : absolute;
+  inset         : 0;
+  background    : linear-gradient(to bottom, transparent 50%, var(--bg-surf) 100%);
+  pointer-events: none;
+  z-index       : 400;
+}
+
+.reach-card-body {
+  padding: var(--sp-md) var(--sp-lg) var(--sp-lg);
+}
+
+.reach-location-row {
+  display      : flex;
+  align-items  : center;
+  gap          : var(--sp-sm);
+  margin-bottom: 10px;
+}
+
+/* Glowing teal dot */
+.reach-dot {
+  width        : 8px;
+  height       : 8px;
+  border-radius: 50%;
+  background   : var(--accent);
+  box-shadow   : 0 0 8px var(--accent);
+  flex-shrink  : 0;
+}
+
+.reach-city-name {
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size  : 1rem;
+  color      : var(--text);
+}
+
+.reach-reveal-btn {
+  display      : inline-flex;
+  align-items  : center;
+  gap          : 6px;
+  background   : none;
+  border       : 1px solid var(--border);
+  color        : var(--text-2);
+  padding      : 6px 14px;
+  border-radius: var(--r-pill);
+  font-size    : .76rem;
+  cursor       : pointer;
+  font-family  : var(--f-body);
+  margin-bottom: var(--sp-sm);
+  transition   :
+    border-color var(--dur-fast),
+    color        var(--dur-fast),
+    background   var(--dur-fast);
+}
+
+.reach-reveal-btn:hover,
+.reach-card.is-open .reach-reveal-btn {
+  border-color: var(--accent);
+  color       : var(--accent);
+  background  : var(--accent-glow);
+}
+
+.reach-arrow {
+  display   : inline-block;
+  transition: transform var(--dur-fast);
+}
+.reach-card.is-open .reach-arrow { transform: rotate(90deg); }
+
+.reach-details-panel {
+  max-height: 0;
+  overflow  : hidden;
+  opacity   : 0;
+  transition:
+    max-height .42s var(--ease-out),
+    opacity    .35s ease;
+}
+.reach-card.is-open .reach-details-panel {
+  max-height: 160px;
+  opacity   : 1;
+}
+
+.reach-inst-name {
+  font-family  : var(--f-display);
+  font-weight  : 700;
+  font-size    : .92rem;
+  color        : var(--accent);
+  margin-bottom: 2px;
+}
+
+.reach-inst-sub {
+  font-size  : .76rem;
+  color      : var(--text-2);
+  line-height: 1.75;
+}
+
+.reach-directions {
+  display        : inline-flex;
+  align-items    : center;
+  gap            : 4px;
+  font-size      : .72rem;
+  color          : var(--text-3);
+  text-decoration: none;
+  margin-top     : var(--sp-xs);
+  transition     : color var(--dur-fast);
+}
+.reach-directions:hover { color: var(--accent); }
+
+/* Pulsing marker animation */
+@keyframes reach-pulse {
+  0%, 100% { box-shadow: 0 0 0 4px rgba(94,234,212,.25), 0 0 16px rgba(94,234,212,.5); }
+  50%       { box-shadow: 0 0 0 8px rgba(94,234,212,.1),  0 0 24px rgba(94,234,212,.8); }
+}
+
+@media (max-width: 900px) {
+  .reach-grid { grid-template-columns: 1fr; }
+}
+
+/* ── 15. FOOTER ───────────────────────────────────────── */
 .footer {
   padding   : var(--sp-xl) 0;
   border-top: 1px solid var(--border);
