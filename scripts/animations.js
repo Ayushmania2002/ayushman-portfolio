@@ -85,34 +85,32 @@
      stacking-context interference from GSAP.
   ────────────────────────────────────────────── */
   (function initSlideshow() {
-    const container = document.querySelector('.r-slideshow');
-    if (!container) return;
-
-    const slides = Array.from(container.querySelectorAll('.r-slide'));
-    const dots   = Array.from(container.querySelectorAll('.r-slide-dot'));
-    if (slides.length < 2) return;
-
-    let current = 0;
     const DELAY = 2800;
+    document.querySelectorAll('.r-slideshow').forEach(container => {
+      const slides = Array.from(container.querySelectorAll('.r-slide'));
+      const dots   = Array.from(container.querySelectorAll('.r-slide-dot'));
+      if (slides.length < 2) return;
 
-    // Init: set inline opacity directly (bypasses CSS class specificity issues)
-    slides.forEach((s, i) => {
-      s.style.transition = 'opacity 1s ease-in-out';
-      s.style.opacity    = i === 0 ? '1' : '0';
+      let current = 0;
+
+      // Init: set inline opacity directly (bypasses CSS class specificity issues)
+      slides.forEach((s, i) => {
+        s.style.transition = 'opacity 1s ease-in-out';
+        s.style.opacity    = i === 0 ? '1' : '0';
+      });
+      if (dots[0]) dots[0].classList.add('r-slide-dot--active');
+
+      function goTo(idx) {
+        slides[current].style.opacity = '0';
+        if (dots[current]) dots[current].classList.remove('r-slide-dot--active');
+        current = ((idx % slides.length) + slides.length) % slides.length;
+        slides[current].style.opacity = '1';
+        if (dots[current]) dots[current].classList.add('r-slide-dot--active');
+      }
+
+      setInterval(() => goTo(current + 1), DELAY);
+      dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
     });
-    if (dots[0]) dots[0].classList.add('r-slide-dot--active');
-
-    function goTo(idx) {
-      slides[current].style.opacity = '0';
-      if (dots[current]) dots[current].classList.remove('r-slide-dot--active');
-      current = ((idx % slides.length) + slides.length) % slides.length;
-      slides[current].style.opacity = '1';
-      if (dots[current]) dots[current].classList.add('r-slide-dot--active');
-    }
-
-    setInterval(() => goTo(current + 1), DELAY);
-
-    dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
   })();
 
   /* ── Timeline item entrance animations ── */
