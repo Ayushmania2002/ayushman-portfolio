@@ -129,4 +129,75 @@
     items.forEach((item) => obs.observe(item));
   })();
 
+  /* ── Background fade slideshow (hero + journey sections) ── */
+  (function initBgSlideshow() {
+    const lightSrcs = [
+      'assets/images/light1.png',
+      'assets/images/light2.png',
+      'assets/images/light3.png',
+      'assets/images/light4.png',
+      'assets/images/light5.png',
+      'assets/images/light6.png',
+      'assets/images/light7.jpeg',
+    ];
+    const darkSrcs = [
+      'assets/images/dark1.png',
+      'assets/images/dark2.png',
+      'assets/images/dark3.png',
+      'assets/images/dark4.png',
+      'assets/images/dark5.png',
+      'assets/images/dark6.png',
+      'assets/images/dark7.png',
+      'assets/images/dark8.png',
+      'assets/images/dark9.png',
+    ];
+
+    const containers = [
+      document.getElementById('heroBgSlideshow'),
+      document.getElementById('journeyBgSlideshow'),
+    ].filter(Boolean);
+    if (!containers.length) return;
+
+    let activeTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+    let idx = 0;
+
+    function getSrcs() {
+      return activeTheme === 'light' ? lightSrcs : darkSrcs;
+    }
+
+    function buildSlides(container, srcs) {
+      container.innerHTML = '';
+      return srcs.map((src, i) => {
+        const el = document.createElement('div');
+        el.className = 'bg-slide' + (i === 0 ? ' bg-slide--active' : '');
+        el.style.backgroundImage = "url('" + src + "')";
+        container.appendChild(el);
+        return el;
+      });
+    }
+
+    let slides = containers.map(c => buildSlides(c, getSrcs()));
+
+    function tick() {
+      const theme = document.documentElement.getAttribute('data-theme') || 'dark';
+      const srcs  = theme === 'light' ? lightSrcs : darkSrcs;
+
+      if (theme !== activeTheme) {
+        activeTheme = theme;
+        idx = 0;
+        slides = containers.map(c => buildSlides(c, srcs));
+        return;
+      }
+
+      const next = (idx + 1) % srcs.length;
+      slides.forEach(s => {
+        s[idx].classList.remove('bg-slide--active');
+        s[next].classList.add('bg-slide--active');
+      });
+      idx = next;
+    }
+
+    setInterval(tick, 4500);
+  })();
+
 })();
