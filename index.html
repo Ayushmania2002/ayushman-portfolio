@@ -12,7 +12,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="styles/main.css" />
 </head>
@@ -191,6 +191,11 @@
             generation in groundnut, molecular docking, and structural modelling.
           </p>
 
+          <div class="about-quals">
+            <span class="about-qual-badge">&#x2713; GATE 2025 Qualified &middot; Life Sciences (XL)</span>
+            <span class="about-qual-badge">&#x2713; CSIR&ndash;NET Qualified &middot; Dec 2025</span>
+          </div>
+
           <div class="skills-grid">
             <div class="skill-col">
               <h4 class="mono skill-heading">// Wet Lab</h4>
@@ -270,11 +275,29 @@
         <article class="r-card r-card--gallery reveal-up" data-delay="100"
           data-gallery-imgs="assets/images/crispr-md.png|assets/images/crispr-md2.jpg|assets/images/crispr-md3.png"
           data-gallery-alt="CRISPR genome editing work — rice climate resilience">
-          <div class="r-card-img r-card-img--hoverable" id="crisprCard">
-            <img src="assets/images/crispr-md.png"
-                 alt="CRISPR-MD genome editing work"
-                 class="r-card-photo" loading="lazy" />
-            <div class="r-card-img-overlay"></div>
+          <!-- CRISPR image slideshow -->
+          <div class="r-card-img r-slideshow" aria-label="CRISPR genome editing research images">
+            <div class="r-slide r-slide--active">
+              <img src="assets/images/crispr-md.png"
+                   alt="CRISPR-MD genome editing — molecular dynamics guided target" />
+              <span class="r-slide-caption mono">Genome Editing &middot; MD Target</span>
+            </div>
+            <div class="r-slide">
+              <img src="assets/images/crispr-md2.jpg"
+                   alt="CRISPR rice — protein interaction assay" />
+              <span class="r-slide-caption mono">PPI Assay</span>
+            </div>
+            <div class="r-slide">
+              <img src="assets/images/crispr-md3.png"
+                   alt="CRISPR sequencing pipeline output" />
+              <span class="r-slide-caption mono">Sequencing Pipeline</span>
+            </div>
+            <!-- Dot indicators -->
+            <div class="r-slide-dots" aria-hidden="true">
+              <span class="r-slide-dot r-slide-dot--active"></span>
+              <span class="r-slide-dot"></span>
+              <span class="r-slide-dot"></span>
+            </div>
           </div>
           <div class="r-card-body">
             <div class="r-tags">
@@ -291,7 +314,7 @@
               protein&ndash;protein interaction assays, and MD-derived structural insights
               to identify and validate editing targets for sustainable food security in India.
             </p>
-            <p class="r-meta mono">ICAR&ndash;IARI &middot; 2026&ndash;present</p>
+            <p class="r-meta mono">ICAR&ndash;IARI &middot; Dr.&nbsp;Shivani Nagar &middot; 2026&ndash;present</p>
           </div>
         </article>
 
@@ -406,7 +429,7 @@
           <div class="tl-dot"></div>
           <span class="tl-year mono">2020</span>
           <div class="tl-card tl-card--gallery"
-               data-gallery-imgs="assets/images/bsms-1.jpeg|assets/images/bsms-2.jpeg"
+               data-gallery-imgs="assets/images/bsms-1.jpeg|assets/images/bsms-2.png"
                data-gallery-alt="BS-MS Programme at IISER Tirupati">
             <h3>BS&ndash;MS Programme Begins</h3>
             <p class="tl-inst">IISER Tirupati &middot; Yerpedu, Tirupati</p>
@@ -535,7 +558,7 @@
           <div class="tl-dot"></div>
           <span class="tl-year mono">2024&ndash;25</span>
           <div class="tl-card tl-card--gallery"
-               data-gallery-imgs="assets/images/picture1.png|assets/images/thesis-1.png|assets/images/thesis-2.jpg|assets/images/thesis-3.jpg|assets/images/thesis-4.png"
+               data-gallery-imgs="assets/images/picture1.png|assets/images/picture2.jpg|assets/images/picture3.jpg|assets/images/picture4.png|assets/images/picture5.png"
                data-gallery-alt="MS Dissertation — Plant Signaling Lab">
             <h3>MS Dissertation Project &middot; Plant Signaling Lab</h3>
             <p class="tl-inst">IISER Tirupati &middot; Jun 2024&ndash;Apr 2025</p>
@@ -801,7 +824,7 @@
   <footer class="footer">
     <div class="container footer-inner">
       <span class="mono footer-copy">© 2025 Ayushman Mallick</span>
-      <span class="mono footer-stack">Built with Three.js &middot; GSAP &middot; Vanilla JS</span>
+      <span class="footer-stack">Handmade with care by Ayushman Mallick</span>
     </div>
   </footer>
 

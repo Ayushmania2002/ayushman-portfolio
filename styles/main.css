@@ -8,7 +8,7 @@
 /* ── 1. DESIGN TOKENS ─────────────────────────────────── */
 :root {
   --f-display : 'Syne',    sans-serif;
-  --f-mono    : 'DM Mono', monospace;
+  --f-mono    : 'Inter',   sans-serif;
   --f-body    : 'Inter',   sans-serif;
 
   --t-hero : clamp(3.4rem, 9vw,  9.2rem);
@@ -95,7 +95,7 @@ em  { font-style: italic; }
 
 .mono {
   font-family   : var(--f-mono);
-  letter-spacing: .05em;
+  letter-spacing: .02em;
   font-size     : .88em;
 }
 
@@ -584,12 +584,33 @@ section { padding: var(--sp-3xl) 0; }
   align-self   : flex-start;
 }
 .about-badge-link {
-  color      : var(--text-2);
+  color      : var(--bg);
   text-decoration: none;
   font-size  : .78rem;
   transition : color var(--dur-fast);
 }
-.about-badge-link:hover { color: var(--accent); }
+.about-badge-link:hover { color: var(--bg); opacity: .8; }
+
+.about-quals {
+  display  : flex;
+  flex-wrap: wrap;
+  gap      : var(--sp-sm);
+  margin   : var(--sp-md) 0 var(--sp-lg);
+}
+
+.about-qual-badge {
+  display       : inline-flex;
+  align-items   : center;
+  gap           : 6px;
+  padding       : 5px 12px;
+  border-radius : var(--r-pill);
+  border        : 1px solid var(--accent);
+  color         : var(--accent);
+  font-size     : .72rem;
+  font-weight   : 500;
+  letter-spacing: .04em;
+  white-space   : nowrap;
+}
 
 .about-socials {
   display  : flex;

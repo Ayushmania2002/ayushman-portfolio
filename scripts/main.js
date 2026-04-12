@@ -59,7 +59,7 @@
 
   /* ── 4. Social links — FILL IN YOUR REAL URLS BELOW ── */
   const SOCIAL = {
-    github  : '',   // e.g. 'https://github.com/YourUsername'
+    github  : 'https://github.com/Ayushmania2002',
     linkedin: 'https://www.linkedin.com/in/ayushman-mallick-68490922b/',
     scholar : '',   // e.g. 'https://scholar.google.com/citations?user=XXXX'
     email   : 'mailto:ayushmania2002@gmail.com',
@@ -192,10 +192,18 @@
       });
     });
 
-    // CRISPR research card
-    const crisprCard = document.getElementById('crisprCard');
-    crisprCard?.addEventListener('click', () => {
-      openGallery([{ src: 'assets/images/crispr-md.png', alt: 'CRISPR genome editing — rice climate resilience' }], 0);
+    // Research cards with gallery (.r-card--gallery)
+    document.querySelectorAll('.r-card--gallery').forEach((card) => {
+      card.addEventListener('click', (e) => {
+        // Don't swallow dot-indicator or caption clicks within the slideshow
+        if (e.target.closest('.r-slide-dots') || e.target.closest('.r-slide-caption')) return;
+        const raw = card.dataset.galleryImgs || '';
+        const alt = card.dataset.galleryAlt  || '';
+        const srcs = raw.split('|').map(s => s.trim()).filter(Boolean);
+        if (!srcs.length) return;
+        const imgs = srcs.map((src, i) => ({ src, alt: `${alt} — ${i + 1}` }));
+        openGallery(imgs, 0);
+      });
     });
 
     prevBtn?.addEventListener('click', (e) => { e.stopPropagation(); showImg(current - 1); });

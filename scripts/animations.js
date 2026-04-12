@@ -139,6 +139,8 @@
       'assets/images/light5.png',
       'assets/images/light6.png',
       'assets/images/light7.jpeg',
+      'assets/images/light8.png',
+      'assets/images/light9.jpeg',
     ];
     const darkSrcs = [
       'assets/images/dark1.png',
@@ -150,6 +152,7 @@
       'assets/images/dark7.png',
       'assets/images/dark8.png',
       'assets/images/dark9.png',
+      'assets/images/dark10.png',
     ];
 
     const containers = [
