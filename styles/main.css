@@ -107,44 +107,21 @@ em  { font-style: italic; }
 
 section { padding: var(--sp-3xl) 0; }
 
-/* ── 4. CURSOR ─────────────────────────────────────────── */
-.cursor-dot {
-  position      : fixed;
-  top: 0; left: 0;
-  width: 8px; height: 8px;
-  background    : var(--accent);
-  border-radius : 50%;
-  pointer-events: none;
-  z-index       : 10000;
-  transform     : translate(-50%,-50%);
-  transition    : opacity var(--dur-fast);
-  will-change   : left, top;
+/* ── 4. CURSOR — Glowing blob + chain ─────────────────── */
+
+/* The blob and chain nodes are created by cursor.js —
+   mixBlendMode:screen means the glow lights up content
+   underneath rather than covering it.                    */
+#cursorBlob {
+  /* Base style set in JS; transitions defined here */
+  transition: width .22s var(--ease-out),
+              height .22s var(--ease-out),
+              opacity .18s ease !important;
 }
 
-.cursor-ring {
-  position      : fixed;
-  top: 0; left: 0;
-  width: 38px; height: 38px;
-  border        : 1.5px solid var(--accent);
-  border-radius : 50%;
-  pointer-events: none;
-  z-index       : 9999;
-  transform     : translate(-50%,-50%);
-  transition    :
-    width  .22s var(--ease-out),
-    height .22s var(--ease-out),
-    border-color .22s,
-    opacity .18s;
-  will-change: left, top;
-}
-
-body.cursor-hover .cursor-ring {
-  width: 58px; height: 58px;
-  opacity: .55;
-}
-
+/* Disable custom cursor on touch devices */
 @media (hover: none) {
-  .cursor-dot, .cursor-ring { display: none; }
+  #cursorBlob { display: none !important; }
   body { cursor: auto; }
 }
 
