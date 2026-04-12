@@ -910,101 +910,57 @@ section { padding: var(--sp-3xl) 0; }
 /* ── 12. JOURNEY / TIMELINE ───────────────────────────── */
 
 /* Section gets its height set dynamically by JS (viewport + scroll travel) */
-.journey { position: relative; }
-
-/* Sticky viewport — pins to screen while user scrolls through */
-.journey-sticky {
-  position      : sticky;
-  top           : 0;
-  height        : 100vh;
-  overflow      : hidden;
-  display       : flex;
-  flex-direction: column;
-  justify-content: center;
-  padding-top   : 0;
-}
-
-.journey-sticky .container {
-  padding-bottom: var(--sp-lg);
-  flex-shrink   : 0;
-}
-
-/* Progress bar at bottom of sticky viewport */
-.tl-progress-bar {
-  position  : absolute;
-  bottom    : 0;
-  left      : 0;
-  height    : 2px;
-  width     : 0%;
-  background: var(--accent);
-  transition: width 0.05s linear;
-  box-shadow: 0 0 8px var(--accent);
-}
-
-.tl-outer {
-  overflow  : hidden;          /* track moves via transform, not scroll */
-  flex-shrink: 0;
-}
-
-/* Scroll hint */
-.tl-scroll-hint {
-  display    : flex;
-  align-items: center;
-  gap        : 6px;
-  font-family: var(--f-mono);
-  font-size  : 0.68rem;
-  color      : var(--text-3);
-  padding    : var(--sp-md) var(--gutter) 0;
-  transition : opacity 0.5s;
-  flex-shrink: 0;
-}
-.tl-scroll-hint svg { opacity: 0.5; animation: hintSlide 1.6s ease-in-out infinite; }
-@keyframes hintSlide {
-  0%,100% { transform: translateX(0); }
-  50%     { transform: translateX(8px); }
-}
-.tl-scroll-hint.hidden { opacity: 0; pointer-events: none; }
-
-/* Mobile — revert to normal vertical layout */
-@media (max-width: 768px) {
-  .journey           { height: auto !important; }
-  .journey-sticky    { position: static; height: auto; overflow: visible; }
-  .tl-outer          { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-  .tl-track          { transform: none !important; }
-  .tl-progress-bar   { display: none; }
-}
+/* ── Timeline / Journey — vertical alternating ── */
+.journey { padding: var(--sp-3xl) 0; }
 
 .tl-track {
-  display  : flex;
-  padding  : var(--sp-3xl) var(--gutter) var(--sp-xl);
-  min-width: max-content;
-  position : relative;
-  gap      : 0;
+  position  : relative;
+  max-width : 960px;
+  margin    : var(--sp-2xl) auto 0;
+  padding   : 0 var(--gutter) var(--sp-3xl);
 }
 
+/* Vertical center line */
 .tl-track::before {
   content   : '';
   position  : absolute;
-  top       : calc(var(--sp-3xl) + 12px);
-  left      : var(--gutter);
-  right     : var(--gutter);
-  height    : 1px;
-  background: var(--border);
+  top       : 0;
+  bottom    : 0;
+  left      : 50%;
+  width     : 1px;
+  transform : translateX(-50%);
+  background: linear-gradient(to bottom,
+    transparent 0%,
+    var(--border) 4%,
+    var(--border) 96%,
+    transparent 100%);
 }
 
+/* 3-column grid per entry: card | dot+year | card */
 .tl-item {
-  position    : relative;
-  min-width   : 260px;
-  max-width   : 280px;
-  padding-top  : 50px;
-  padding-right: 40px;
+  display              : grid;
+  grid-template-columns: 1fr 80px 1fr;
+  grid-template-rows   : auto auto;
+  align-items          : start;
+  margin-bottom        : var(--sp-2xl);
+  min-width            : unset;
+  max-width            : unset;
+  padding              : 0;
+  position             : relative;
 }
 
+/* Dot: centre column, row 1 */
 .tl-dot {
-  position     : absolute;
-  top          : 0;
-  left         : 0;
-  width: 14px; height: 14px;
+  grid-column  : 2;
+  grid-row     : 1;
+  justify-self : center;
+  align-self   : start;
+  margin-top   : 1rem;
+  position     : relative;
+  top          : auto;
+  left         : auto;
+  width        : 14px;
+  height       : 14px;
   background   : var(--bg-surf);
   border       : 2px solid var(--border);
   border-radius: 50%;
@@ -1026,23 +982,49 @@ section { padding: var(--sp-3xl) 0; }
   50%     { box-shadow: 0 0 0 12px rgba(94,234,212,0); }
 }
 
+/* Year: centre column, row 2 */
 .tl-year {
-  position     : absolute;
-  top          : -22px;
-  left         : 20px;
-  font-size    : .7rem;
-  color        : var(--accent);
+  grid-column   : 2;
+  grid-row      : 2;
+  justify-self  : center;
+  text-align    : center;
+  font-size     : .68rem;
+  color         : var(--accent);
   letter-spacing: .1em;
+  margin-top    : 6px;
+  position      : relative;
+  top           : auto;
+  left          : auto;
+}
+
+/* Odd items: card in left column */
+.tl-item:nth-child(odd) > .tl-card {
+  grid-column : 1;
+  grid-row    : 1 / span 2;
+  margin-right: 2rem;
+  margin-left : 0;
+}
+
+/* Even items: card in right column */
+.tl-item:nth-child(even) > .tl-card {
+  grid-column : 3;
+  grid-row    : 1 / span 2;
+  margin-left : 2rem;
+  margin-right: 0;
 }
 
 .tl-card {
-  margin-left : 24px;
-  padding     : var(--sp-lg);
-  border      : 1px solid var(--border);
+  padding      : var(--sp-lg);
+  border       : 1px solid var(--border);
   border-radius: var(--r-md);
-  background  : var(--bg-surf);
-  transition  : border-color var(--dur-fast);
+  background   : var(--bg-surf);
+  opacity      : 0;
+  transition   : border-color var(--dur-fast), opacity 0.55s ease, transform 0.55s ease;
 }
+
+.tl-item:nth-child(odd)  > .tl-card { transform: translateX(-30px); }
+.tl-item:nth-child(even) > .tl-card { transform: translateX( 30px); }
+.tl-item.tl-visible > .tl-card      { opacity: 1; transform: translateX(0); }
 
 .tl-card--active {
   border-color: var(--accent) !important;
@@ -1068,6 +1050,30 @@ section { padding: var(--sp-3xl) 0; }
   padding      : 3px 10px;
   border       : 1px solid var(--accent);
   border-radius: var(--r-pill);
+}
+
+/* Mobile — single column, dots on left edge */
+@media (max-width: 768px) {
+  .tl-track::before { left: 20px; transform: none; }
+
+  .tl-item {
+    grid-template-columns: 44px 1fr;
+    grid-template-rows   : auto auto 1fr;
+    margin-bottom        : var(--sp-xl);
+  }
+
+  .tl-dot  { grid-column: 1; grid-row: 1; margin-top: 0; }
+  .tl-year { grid-column: 1; grid-row: 2; writing-mode: vertical-rl;
+             transform: rotate(180deg); font-size: .6rem; margin-top: 4px; }
+
+  .tl-item:nth-child(odd)  > .tl-card,
+  .tl-item:nth-child(even) > .tl-card {
+    grid-column: 2; grid-row: 1 / span 3;
+    margin-left: 1rem; margin-right: 0;
+  }
+
+  .tl-item:nth-child(odd)  > .tl-card { transform: translateX(20px); }
+  .tl-item:nth-child(even) > .tl-card { transform: translateX(20px); }
 }
 
 /* ── 13. CONTACT ──────────────────────────────────────── */
@@ -1192,7 +1198,7 @@ section { padding: var(--sp-3xl) 0; }
 @media (max-width: 480px) {
   .about-photo-wrap { width: 100%; max-width: 300px; }
   .orcid-block      { gap: var(--sp-md); }
-  .tl-item          { min-width: 220px; }
+
 }
 
 /* ── 17. DEGREE CARD — hover preview + click popup ─────── */

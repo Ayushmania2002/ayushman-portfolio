@@ -67,18 +67,6 @@
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav-link');
   if (sections.length && navLinks.length) {
-    new IntersectionObserver((entries) => {
-      entries.forEach((e) => {
-        if (!e.isIntersecting) return;
-        const id = e.target.id;
-        navLinks.forEach((l) => {
-          l.style.color = l.getAttribute('href') === '#' + id ? 'var(--accent)' : '';
-        });
-      });
-    }, { rootMargin: '-40% 0px -40% 0px' })
-    .observe.apply(null, [...sections].map ? null : null);
-
-    // Fix: observe each section
     const spy = new IntersectionObserver((entries) => {
       entries.forEach((e) => {
         if (!e.isIntersecting) return;
@@ -127,56 +115,18 @@
     dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
   })();
 
-  /* ──────────────────────────────────────────────
-     TIMELINE — STICKY HORIZONTAL SCROLL
-     The section gets extra height = track scroll
-     width. The inner wrapper is position:sticky so
-     it pins while the user scrolls vertically, and
-     the track translates horizontally in sync with
-     scroll progress — exactly like shivamkgw.github.io
-  ────────────────────────────────────────────── */
-  (function initStickyTimeline() {
-    const section = document.getElementById('timeline');
-    const track   = document.getElementById('tlTrack');
-    const hint    = document.getElementById('tlScrollHint');
-    const bar     = document.getElementById('tlProgressBar');
-    if (!section || !track) return;
-
-    // Skip on mobile — CSS resets to normal layout
-    const isMobile = () => window.innerWidth <= 768;
-
-    let maxX = 0;
-
-    function setHeight() {
-      if (isMobile()) {
-        section.style.height = '';
-        track.style.transform = '';
-        return;
-      }
-      // Extra scrollable height = how far the track needs to travel
-      maxX = track.scrollWidth - window.innerWidth;
-      section.style.height = (window.innerHeight + Math.max(0, maxX)) + 'px';
-    }
-
-    function onScroll() {
-      if (isMobile()) return;
-      const rect     = section.getBoundingClientRect();
-      const progress = Math.max(0, Math.min(1, -rect.top / maxX));
-      track.style.transform = `translateX(${-maxX * progress}px)`;
-      if (bar) bar.style.width = (progress * 100) + '%';
-      // Hide scroll hint after 5% progress
-      if (hint && progress > 0.05) hint.classList.add('hidden');
-    }
-
-    // Init — wait for fonts/images so track width is accurate
-    window.addEventListener('load', () => {
-      setHeight();
-      onScroll();
-    });
-
-    setHeight(); // immediate rough pass
-    window.addEventListener('resize', () => { setHeight(); onScroll(); });
-    window.addEventListener('scroll', onScroll, { passive: true });
+  /* ── Timeline item entrance animations ── */
+  (function initTimelineReveal() {
+    const items = document.querySelectorAll('.tl-item');
+    if (!items.length) return;
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        e.target.classList.add('tl-visible');
+        obs.unobserve(e.target);
+      });
+    }, { threshold: 0.15 });
+    items.forEach((item) => obs.observe(item));
   })();
 
 })();
