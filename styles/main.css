@@ -367,8 +367,8 @@ section { padding: var(--sp-3xl) 0; }
 .hero-label {
   color        : var(--accent);
   margin-bottom: var(--sp-lg);
-  font-size    : .8rem;
-  letter-spacing: .12em;
+  font-size    : .95rem;
+  letter-spacing: .10em;
 }
 
 .hero-name {
@@ -380,6 +380,14 @@ section { padding: var(--sp-3xl) 0; }
   margin-bottom : var(--sp-xl);
   display       : flex;
   flex-direction: column;
+  cursor        : default;
+}
+
+/* Individual letter spans injected by nameanim.js */
+.nm-char {
+  display       : inline-block;
+  will-change   : transform, color, text-shadow;
+  transition    : color .05s linear;
 }
 
 [data-theme="dark"]  .hero-name-first {
@@ -391,14 +399,14 @@ section { padding: var(--sp-3xl) 0; }
 [data-theme="light"] .hero-name-last  { color: var(--accent); }
 
 .hero-role {
-  font-size    : clamp(.88rem, 1.4vw, 1.05rem);
+  font-size    : clamp(1rem, 1.5vw, 1.18rem);
   color        : var(--text-2);
   line-height  : 1.75;
   margin-bottom: var(--sp-xl);
   max-width    : 560px;
 }
 
-.hero-inst { font-size: .82rem; color: var(--text-3); }
+.hero-inst { font-size: .92rem; color: var(--text-3); }
 
 .hero-tags {
   display      : flex;
@@ -409,12 +417,12 @@ section { padding: var(--sp-3xl) 0; }
 
 .tag {
   font-family  : var(--f-mono);
-  font-size    : .72rem;
-  padding      : 5px 14px;
+  font-size    : .82rem;
+  padding      : 6px 16px;
   border       : 1px solid var(--border);
   border-radius: var(--r-pill);
   color        : var(--text-2);
-  letter-spacing: .06em;
+  letter-spacing: .04em;
   transition   : all var(--dur-fast);
 }
 
