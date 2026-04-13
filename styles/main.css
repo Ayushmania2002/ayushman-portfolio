@@ -1628,13 +1628,22 @@ section { padding: var(--sp-3xl) 0; }
   pointer-events: none;
 }
 .tl-img-preview img {
-  width      : 100%;
-  display    : block;
-  object-fit : cover;
-  max-height : 200px;
-  opacity    : 0.6;   /* 60% transparent */
+  width        : 100%;
+  display      : block;
+  object-fit   : cover;
+  max-height   : 200px;
+  opacity      : 0;
   border-radius: var(--r-sm);
+  transition   : opacity 0.5s ease 0.1s;
 }
+/* Lab logo images: contain instead of cover, white bg */
+.tl-img-preview .tl-lab-preview-img {
+  object-fit  : contain;
+  background  : var(--bg-surf-2);
+  padding     : var(--sp-sm);
+  max-height  : 140px;
+}
+.tl-card--gallery:hover .tl-img-preview img { opacity: 0.85; }
 .tl-card--gallery {
   cursor  : pointer;
   position: relative;
@@ -1814,6 +1823,33 @@ section { padding: var(--sp-3xl) 0; }
   color      : var(--text-2);
   margin-top : var(--sp-xs);
   font-style : italic;
+}
+
+/* Institution logo strip */
+.tl-inst-logo {
+  margin     : var(--sp-sm) 0 var(--sp-xs);
+  display    : flex;
+  align-items: center;
+}
+.tl-logo-img {
+  height    : 28px;
+  width     : auto;
+  max-width : 120px;
+  object-fit: contain;
+  opacity   : 0.75;
+  filter    : grayscale(20%);
+  transition: opacity var(--dur-fast), filter var(--dur-fast);
+}
+.tl-card:hover .tl-logo-img {
+  opacity: 1;
+  filter : none;
+}
+
+/* "Coming Soon" research tag */
+.r-tag--soon {
+  background: rgba(234,179,8,.15);
+  color     : #eab308;
+  border    : 1px solid rgba(234,179,8,.3);
 }
 .tl-inst {
   font-family: var(--f-mono);
