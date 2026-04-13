@@ -242,47 +242,15 @@
     });
   })();
 
-  /* ── 10. Pixel-portrait hover effect ── */
-  const wrap  = document.getElementById('profilePhotoWrap');
-  const photo = document.getElementById('profilePhoto');
+  /* ── 10. Profile photo crossfade (profile1 → profile2 on hover) ── */
+  const wrap    = document.getElementById('profilePhotoWrap');
+  const photo2  = document.getElementById('profilePhoto2');
 
-  if (wrap && photo) {
-    let canvas = null;
-    let ready  = false;
-
-    function buildPixel() {
-      if (ready || photo.naturalWidth === 0) return;
-      const BLOCK = 8;
-      const w = photo.naturalWidth;
-      const h = photo.naturalHeight;
-
-      const full = document.createElement('canvas');
-      full.width  = w; full.height = h;
-      full.getContext('2d').drawImage(photo, 0, 0, w, h);
-
-      const small = document.createElement('canvas');
-      small.width  = Math.floor(w / BLOCK);
-      small.height = Math.floor(h / BLOCK);
-      const sc = small.getContext('2d');
-      sc.imageSmoothingEnabled = false;
-      sc.drawImage(full, 0, 0, small.width, small.height);
-
-      canvas = document.createElement('canvas');
-      canvas.width  = w; canvas.height = h;
-      canvas.style.cssText = `
-        position:absolute;inset:0;width:100%;height:100%;
-        object-fit:cover;opacity:0;
-        transition:opacity .28s ease;border-radius:inherit;`;
-      const ctx = canvas.getContext('2d');
-      ctx.imageSmoothingEnabled = false;
-      ctx.drawImage(small, 0, 0, w, h);
-      wrap.appendChild(canvas);
-      ready = true;
-    }
-
-    photo.complete ? buildPixel() : photo.addEventListener('load', buildPixel);
-    wrap.addEventListener('mouseenter', () => { if (canvas) canvas.style.opacity = '1'; });
-    wrap.addEventListener('mouseleave', () => { if (canvas) canvas.style.opacity = '0'; });
+  if (wrap && photo2) {
+    // Preload profile2
+    photo2.loading = 'eager';
+    wrap.addEventListener('mouseenter', () => photo2.classList.add('visible'));
+    wrap.addEventListener('mouseleave', () => photo2.classList.remove('visible'));
   }
 
 })();

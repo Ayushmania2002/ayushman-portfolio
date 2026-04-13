@@ -210,9 +210,13 @@
     if (!track || !fill || !section) return;
 
     function update() {
-      const tRect = track.getBoundingClientRect();
-      const sRect = section.getBoundingClientRect();
-      const centreX = tRect.left + tRect.width / 2 - 1;
+      const tRect  = track.getBoundingClientRect();
+      const sRect  = section.getBoundingClientRect();
+      const mobile = window.innerWidth <= 768;
+      // Desktop: centre of track. Mobile: centre of the 44px dot column (22px from track left)
+      const centreX = mobile
+        ? tRect.left + 22 - 1
+        : tRect.left + tRect.width / 2 - 1;
 
       // Show only when timeline section is in view
       const inView = sRect.top < window.innerHeight && sRect.bottom > 0;

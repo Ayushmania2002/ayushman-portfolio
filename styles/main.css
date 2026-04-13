@@ -587,8 +587,8 @@ section { padding: var(--sp-3xl) 0; }
 
 .about-photo-wrap {
   position     : relative;
-  width        : 300px;
-  height       : 360px;
+  width        : 360px;
+  height       : 440px;
   border-radius: var(--r-lg);
   overflow     : hidden;
   border       : 1px solid var(--border);
@@ -597,14 +597,29 @@ section { padding: var(--sp-3xl) 0; }
 }
 
 .about-photo {
+  position        : absolute;
+  inset           : 0;
   width           : 100%;
   height          : 100%;
   object-fit      : cover;
   object-position : center top;
-  transition      : transform .5s var(--ease-out);
+  transition      : opacity .55s var(--ease-out), transform .55s var(--ease-out);
 }
 
-.about-photo-wrap:hover .about-photo { transform: scale(1.04); }
+/* profile2 sits on top, hidden until hovered */
+.about-photo--alt {
+  opacity : 0;
+  z-index : 1;
+}
+.about-photo--alt.visible {
+  opacity  : 1;
+  transform: scale(1.03);
+}
+
+/* Subtle scale on primary when alt is not shown */
+.about-photo-wrap:hover .about-photo:not(.about-photo--alt) {
+  transform: scale(1.03);
+}
 
 .about-photo-fallback {
   display        : none;
@@ -1181,7 +1196,11 @@ section { padding: var(--sp-3xl) 0; }
 
 /* Mobile — single column, dots on left edge */
 @media (max-width: 768px) {
-  .tl-track::before { left: 20px; transform: none; }
+  /* Line runs through dot centre (col-1 is 44px, centre = 22px) */
+  .tl-track::before {
+    left     : 22px;
+    transform: none;
+  }
 
   .tl-item {
     grid-template-columns: 44px 1fr;
@@ -1189,14 +1208,31 @@ section { padding: var(--sp-3xl) 0; }
     margin-bottom        : var(--sp-xl);
   }
 
-  .tl-dot  { grid-column: 1; grid-row: 1; margin-top: 0; }
-  .tl-year { grid-column: 1; grid-row: 2; writing-mode: vertical-rl;
-             transform: rotate(180deg); font-size: .6rem; margin-top: 4px; }
+  /* Dot centred inside its 44px column */
+  .tl-dot {
+    grid-column : 1;
+    grid-row    : 1;
+    margin-top  : 0;
+    justify-self: center;
+  }
+
+  /* Year below dot, centred */
+  .tl-year {
+    grid-column : 1;
+    grid-row    : 2;
+    writing-mode: vertical-rl;
+    transform   : rotate(180deg);
+    font-size   : .6rem;
+    margin-top  : 4px;
+    justify-self: center;
+  }
 
   .tl-item:nth-child(odd)  > .tl-card,
   .tl-item:nth-child(even) > .tl-card {
-    grid-column: 2; grid-row: 1 / span 3;
-    margin-left: 1rem; margin-right: 0;
+    grid-column: 2;
+    grid-row   : 1 / span 3;
+    margin-left: 1rem;
+    margin-right: 0;
   }
 
   .tl-item:nth-child(odd)  > .tl-card { transform: translateX(20px); }
@@ -1527,7 +1563,7 @@ section { padding: var(--sp-3xl) 0; }
 }
 
 @media (max-width: 480px) {
-  .about-photo-wrap { width: 100%; max-width: 300px; }
+  .about-photo-wrap { width: 100%; max-width: 360px; }
   .orcid-block      { gap: var(--sp-md); }
 
 }
