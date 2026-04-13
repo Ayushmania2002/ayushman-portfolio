@@ -95,18 +95,32 @@
     const nameEl   = document.getElementById('labModalName');
     const advEl    = document.getElementById('labModalAdvisor');
     const linkEl   = document.getElementById('labModalLink');
+    const logoEl   = document.getElementById('labModalLogo');
     if (!modal) return;
 
     document.querySelectorAll('.tl-lab-btn').forEach((btn) => {
       btn.addEventListener('click', (e) => {
         e.stopPropagation();
-        const labName = btn.dataset.labName  || 'Lab Page';
-        const advisor = btn.dataset.advisor  || '';
-        const url     = btn.dataset.labUrl   || '#';
+        const labName  = btn.dataset.labName  || 'Lab Page';
+        const advisor  = btn.dataset.advisor  || '';
+        const url      = btn.dataset.labUrl   || '#';
+        const logoSrc  = btn.dataset.labLogo  || '';
 
         nameEl.textContent = labName;
         advEl.textContent  = advisor;
         linkEl.href        = url;
+
+        // Lab logo
+        if (logoEl) {
+          if (logoSrc) {
+            logoEl.src   = logoSrc;
+            logoEl.alt   = labName + ' logo';
+            logoEl.style.display = '';
+          } else {
+            logoEl.src   = '';
+            logoEl.style.display = 'none';
+          }
+        }
         fallback.classList.remove('visible');
 
         // Try loading in iframe; show fallback if blocked
