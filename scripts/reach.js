@@ -80,17 +80,6 @@
     },
   ];
 
-  /* ── Haversine distance (km) ── */
-  function distKm(lat1, lng1, lat2, lng2) {
-    const R = 6371;
-    const dLat = (lat2 - lat1) * Math.PI / 180;
-    const dLng = (lng2 - lng1) * Math.PI / 180;
-    const a = Math.sin(dLat / 2) ** 2
-      + Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180)
-      * Math.sin(dLng / 2) ** 2;
-    return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-  }
-
   /* ── Update which card is "present" ── */
   function applyPresence(presentCardId) {
     locations.forEach(loc => {
@@ -113,27 +102,6 @@
         panel.innerHTML = isPresent ? loc.presentHtml : loc.absentHtml;
       }
     });
-  }
-
-  /* ── Auto-detect via Geolocation API ── */
-  function detectLocation() {
-    if (!navigator.geolocation) return;
-    navigator.geolocation.getCurrentPosition(
-      pos => {
-        const { latitude, longitude } = pos.coords;
-        let closestIdx = -1, closestDist = Infinity;
-        locations.forEach((loc, i) => {
-          const d = distKm(latitude, longitude, loc.lat, loc.lng);
-          if (d < closestDist) { closestDist = d; closestIdx = i; }
-        });
-        // Only mark present if within 60 km of a city
-        if (closestIdx >= 0 && closestDist < 60) {
-          applyPresence(locations[closestIdx].cardId);
-        }
-      },
-      () => { /* permission denied or unavailable — keep hardcoded default */ },
-      { timeout: 6000, maximumAge: 300000 }
-    );
   }
 
   /* ── Marker icon factory ── */
@@ -191,56 +159,73 @@
     }, 60);
   });
 
-  /* ── Initialise panel content with defaults ── */
-  locations.forEach(loc => {
-    const card = document.getElementById(loc.cardId);
-    if (!card) return;
-    const isPresent = card.dataset.present === 'true';
-    const panel = card.querySelector('.reach-details-panel');
-    if (panel) panel.innerHTML = isPresent ? loc.presentHtml : loc.absentHtml;
-  });
+  /* ── Wire up card click interaction ── */
+  function setupCards() {
+    document.querySelectorAll('.reach-card').forEach(card => {
+      const panel = card.querySelector('.reach-details-panel');
+      const btn   = card.querySelector('.reach-reveal-btn');
 
-  /* ── Card click interaction ── */
-  document.querySelectorAll('.reach-card').forEach(card => {
-    const panel = card.querySelector('.reach-details-panel');
-    const btn   = card.querySelector('.reach-reveal-btn');
+      card.addEventListener('click', (e) => {
+        if (e.target.closest('.reach-directions')) return;
 
-    card.addEventListener('click', (e) => {
-      if (e.target.closest('.reach-directions')) return;
+        const isPresent   = card.dataset.present === 'true';
+        const alreadyOpen = card.classList.contains('is-open');
 
-      const isPresent  = card.dataset.present === 'true';
-      const alreadyOpen = card.classList.contains('is-open');
-
-      // Close card
-      if (alreadyOpen) {
-        card.classList.remove('is-open', 'is-present', 'is-absent');
-        btn.setAttribute('aria-expanded', 'false');
-        panel.setAttribute('aria-hidden', 'true');
-        return;
-      }
-
-      // Refresh panel content (presence may have been updated by geolocation)
-      const loc = locations.find(l => l.cardId === card.id);
-      if (loc) panel.innerHTML = isPresent ? loc.presentHtml : loc.absentHtml;
-
-      // Open card
-      card.classList.add('is-open');
-      card.classList.add(isPresent ? 'is-present' : 'is-absent');
-      btn.setAttribute('aria-expanded', 'true');
-      panel.setAttribute('aria-hidden', 'false');
-
-      // Auto-dismiss absent cards after 3 s
-      if (!isPresent) {
-        setTimeout(() => {
-          card.classList.remove('is-open', 'is-absent');
+        // Close card
+        if (alreadyOpen) {
+          card.classList.remove('is-open', 'is-present', 'is-absent');
           btn.setAttribute('aria-expanded', 'false');
           panel.setAttribute('aria-hidden', 'true');
-        }, 3000);
-      }
-    });
-  });
+          return;
+        }
 
-  /* ── Kick off geolocation detection ── */
-  detectLocation();
+        // Refresh panel content
+        const loc = locations.find(l => l.cardId === card.id);
+        if (loc) panel.innerHTML = isPresent ? loc.presentHtml : loc.absentHtml;
+
+        // Open card
+        card.classList.add('is-open');
+        card.classList.add(isPresent ? 'is-present' : 'is-absent');
+        btn.setAttribute('aria-expanded', 'true');
+        panel.setAttribute('aria-hidden', 'false');
+
+        // Auto-dismiss absent cards after 3 s
+        if (!isPresent) {
+          setTimeout(() => {
+            card.classList.remove('is-open', 'is-absent');
+            btn.setAttribute('aria-expanded', 'false');
+            panel.setAttribute('aria-hidden', 'true');
+          }, 3000);
+        }
+      });
+    });
+  }
+
+  /* ── City key → card ID map ── */
+  const CITY_MAP = {
+    delhi    : 'rc-delhi',
+    kolkata  : 'rc-kolkata',
+    tirupati : 'rc-tirupati',
+  };
+
+  /* ── Load location.json and apply presence ── */
+  fetch('assets/location.json?v=' + Date.now())
+    .then(r => r.json())
+    .then(data => {
+      const city       = (data.city || '').toLowerCase().trim();
+      const presentId  = CITY_MAP[city] || 'rc-delhi';
+      applyPresence(presentId);
+    })
+    .catch(() => {
+      // Fallback: use data-present from HTML as-is
+      locations.forEach(loc => {
+        const card = document.getElementById(loc.cardId);
+        if (!card) return;
+        const isPresent = card.dataset.present === 'true';
+        const panel = card.querySelector('.reach-details-panel');
+        if (panel) panel.innerHTML = isPresent ? loc.presentHtml : loc.absentHtml;
+      });
+    })
+    .finally(() => setupCards());
 
 })();
