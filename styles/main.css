@@ -1020,6 +1020,62 @@ section { padding: var(--sp-3xl) 0; }
   border-radius: var(--r-md);
 }
 
+/* ── Publication entries ── */
+.pub-entry {
+  display      : flex;
+  gap          : var(--sp-xl);
+  align-items  : flex-start;
+  padding      : var(--sp-xl);
+  border       : 1px solid var(--border);
+  border-radius: var(--r-lg);
+  background   : var(--bg-surf);
+  margin-bottom: var(--sp-md);
+  transition   : border-color var(--dur-fast), background var(--dur-fast);
+}
+.pub-entry:hover {
+  border-color : var(--accent);
+  background   : var(--bg-surf-2);
+}
+.pub-number {
+  font-size    : 1.6rem;
+  font-weight  : 700;
+  color        : var(--accent);
+  opacity      : 0.5;
+  flex-shrink  : 0;
+  line-height  : 1;
+  padding-top  : 2px;
+  min-width    : 2.2rem;
+}
+.pub-content { flex: 1; }
+.pub-authors {
+  font-size    : .88rem;
+  color        : var(--text-2);
+  line-height  : 1.6;
+  margin-bottom: var(--sp-sm);
+}
+.pub-authors strong { color: var(--text); }
+.pub-title {
+  font-size    : 1rem;
+  font-weight  : 600;
+  color        : var(--text);
+  line-height  : 1.55;
+  margin-bottom: var(--sp-sm);
+}
+.pub-journal {
+  font-size    : .88rem;
+  color        : var(--text-2);
+}
+.pub-status {
+  color        : var(--accent);
+  font-size    : .82rem;
+  font-family  : var(--f-mono);
+}
+
+@media (max-width: 600px) {
+  .pub-entry  { flex-direction: column; gap: var(--sp-sm); }
+  .pub-number { font-size: 1.2rem; }
+}
+
 /* ── 12. JOURNEY / TIMELINE ───────────────────────────── */
 
 /* Section gets its height set dynamically by JS (viewport + scroll travel) */
