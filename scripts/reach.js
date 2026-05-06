@@ -15,24 +15,24 @@
     {
       id      : 'rm-tirupati',
       cardId  : 'rc-tirupati',
-      lat     : 13.5311,
-      lng     : 79.4160,
+      lat     : 13.74672,
+      lng     : 79.59534,
       zoom    : 14,
-      mapsUrl : 'https://maps.google.com/?q=13.5311,79.4160',
+      mapsUrl : 'https://maps.google.com/?q=13.74672,79.59534',
       presentHtml: `
         <p class="reach-status reach-status--present">&#x1F7E2;&nbsp; I&rsquo;m here right now!</p>
         <p class="reach-inst-name">IISER Tirupati</p>
         <p class="reach-inst-sub">BS&ndash;MS Programme &middot; 2020&ndash;2025</p>
         <p class="reach-inst-sub">Department of Biology &middot; Yerpedu, Tirupati</p>
         <p class="reach-inst-sub" style="margin-top:6px">Feel free to connect via any of the social links above&nbsp;&#x1F44B;</p>
-        <a href="https://maps.google.com/?q=13.5311,79.4160" target="_blank" rel="noopener" class="reach-directions">&#x2197; Open in Google Maps</a>
+        <a href="https://maps.google.com/?q=13.74672,79.59534" target="_blank" rel="noopener" class="reach-directions">&#x2197; Open in Google Maps</a>
       `,
       absentHtml: `
         <p class="reach-status reach-status--absent">&#x1F534;&nbsp; Oops! You can&rsquo;t find me here at the moment.</p>
         <p class="reach-inst-name">IISER Tirupati</p>
         <p class="reach-inst-sub">BS&ndash;MS Programme &middot; 2020&ndash;2025</p>
         <p class="reach-inst-sub">Department of Biology &middot; Yerpedu, Tirupati</p>
-        <a href="https://maps.google.com/?q=13.5311,79.4160" target="_blank" rel="noopener" class="reach-directions">&#x2197; Open in Google Maps</a>
+        <a href="https://maps.google.com/?q=13.74672,79.59534" target="_blank" rel="noopener" class="reach-directions">&#x2197; Open in Google Maps</a>
       `,
     },
     {
@@ -59,23 +59,23 @@
     {
       id      : 'rm-delhi',
       cardId  : 'rc-delhi',
-      lat     : 28.6401449,
-      lng     : 77.1612158,
+      lat     : 28.64039913532222,
+      lng     : 77.16226722593373,
       zoom    : 16,
-      mapsUrl : 'https://maps.google.com/?q=28.6401449,77.1612158',
+      mapsUrl : 'https://maps.google.com/?q=28.64039913532222,77.16226722593373',
       presentHtml: `
         <p class="reach-status reach-status--present">&#x1F7E2;&nbsp; I&rsquo;m here right now!</p>
         <p class="reach-inst-name">ICAR&ndash;IARI, New Delhi</p>
         <p class="reach-inst-sub">Senior Research Fellow &middot; 2026&ndash;present</p>
         <p class="reach-inst-sub">Plant Molecular Physiology Lab &middot; Lab 106, Pusa Campus</p>
         <p class="reach-inst-sub" style="margin-top:6px">Feel free to connect via any of the social links above&nbsp;&#x1F44B;</p>
-        <a href="https://maps.google.com/?q=28.6401449,77.1612158" target="_blank" rel="noopener" class="reach-directions">&#x2197; Open in Google Maps</a>
+        <a href="https://maps.google.com/?q=28.64039913532222,77.16226722593373" target="_blank" rel="noopener" class="reach-directions">&#x2197; Open in Google Maps</a>
       `,
       absentHtml: `
         <p class="reach-status reach-status--absent">&#x1F534;&nbsp; Oops! You can&rsquo;t find me here at the moment.</p>
         <p class="reach-inst-name">ICAR&ndash;IARI, New Delhi</p>
         <p class="reach-inst-sub">Plant Molecular Physiology Lab &middot; Pusa Campus</p>
-        <a href="https://maps.google.com/?q=28.6401449,77.1612158" target="_blank" rel="noopener" class="reach-directions">&#x2197; Open in Google Maps</a>
+        <a href="https://maps.google.com/?q=28.64039913532222,77.16226722593373" target="_blank" rel="noopener" class="reach-directions">&#x2197; Open in Google Maps</a>
       `,
     },
   ];
