@@ -1483,7 +1483,7 @@ section { padding: var(--sp-3xl) 0; }
     opacity    .35s ease;
 }
 .reach-card.is-open .reach-details-panel {
-  max-height: 160px;
+  max-height: 280px;
   opacity   : 1;
 }
 
