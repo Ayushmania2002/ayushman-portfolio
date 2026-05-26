@@ -1983,6 +1983,93 @@ section { padding: var(--sp-3xl) 0; }
   color     : #eab308;
   border    : 1px solid rgba(234,179,8,.3);
 }
+
+/* ── BoltzYML card ── */
+.boltzy-banner-wrap {
+  background   : #fff;
+  overflow     : hidden;
+  border-radius: var(--r-md) var(--r-md) 0 0;
+  height       : 210px;
+  display      : flex;
+  align-items  : center;
+  justify-content: center;
+}
+.boltzy-banner {
+  width     : 100%;
+  height    : 100%;
+  object-fit: cover;
+  object-position: center;
+  display   : block;
+}
+.boltzy-header {
+  margin-bottom: var(--sp-sm);
+}
+.boltzy-logo {
+  height    : 38px;
+  width     : auto;
+  object-fit: contain;
+  display   : block;
+}
+[data-theme="dark"] .boltzy-logo,
+[data-theme="dark"] .boltzy-banner-wrap {
+  filter: none;
+}
+.boltzy-links {
+  display    : flex;
+  flex-wrap  : wrap;
+  gap        : var(--sp-sm);
+  margin-top : var(--sp-md);
+}
+.boltzy-link {
+  display        : inline-flex;
+  align-items    : center;
+  gap            : 5px;
+  font-family    : var(--f-mono);
+  font-size      : .72rem;
+  font-weight    : 600;
+  letter-spacing : .03em;
+  padding        : 5px 12px;
+  border-radius  : var(--r-pill);
+  border         : 1px solid transparent;
+  text-decoration: none;
+  transition     : background var(--dur-fast), color var(--dur-fast), border-color var(--dur-fast);
+}
+.boltzy-link--webapp {
+  background  : rgba(94,234,212,.12);
+  color       : var(--accent);
+  border-color: rgba(94,234,212,.3);
+}
+.boltzy-link--webapp:hover {
+  background  : rgba(94,234,212,.22);
+  border-color: var(--accent);
+}
+.boltzy-link--github {
+  background  : rgba(226,232,240,.08);
+  color       : var(--text);
+  border-color: var(--border);
+}
+.boltzy-link--github:hover {
+  background  : rgba(226,232,240,.15);
+  border-color: var(--text-2);
+}
+.boltzy-link--pypi {
+  background  : rgba(37,99,235,.12);
+  color       : #60a5fa;
+  border-color: rgba(37,99,235,.3);
+}
+.boltzy-link--pypi:hover {
+  background  : rgba(37,99,235,.22);
+  border-color: #60a5fa;
+}
+.boltzy-link--doi {
+  background  : rgba(60,126,188,.12);
+  color       : #93c5fd;
+  border-color: rgba(60,126,188,.3);
+}
+.boltzy-link--doi:hover {
+  background  : rgba(60,126,188,.22);
+  border-color: #93c5fd;
+}
 .tl-inst {
   font-family: var(--f-mono);
   font-size  : 0.7rem;
