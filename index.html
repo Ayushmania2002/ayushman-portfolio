@@ -442,10 +442,21 @@
 
         <!-- ── CARD 5: BoltzYML ── -->
         <article class="r-card r-card--boltzy reveal-up" data-delay="400">
-          <div class="r-card-img boltzy-banner-wrap">
-            <img src="assets/images/boltzyml-banner.png"
-                 alt="BoltzYML pipeline overview"
-                 class="boltzy-banner" loading="lazy" />
+          <div class="r-card-img r-slideshow boltzy-slideshow" aria-label="BoltzYML screenshots">
+            <div class="r-slide r-slide--active boltzy-slide-bg">
+              <img src="assets/images/boltzyml-banner.png"
+                   alt="BoltzYML pipeline overview" loading="lazy" />
+              <span class="r-slide-caption mono">Pipeline Overview</span>
+            </div>
+            <div class="r-slide boltzy-slide-bg">
+              <img src="assets/images/boltzyml-webapp.png"
+                   alt="BoltzYML web app interface" loading="lazy" />
+              <span class="r-slide-caption mono">Live Web App</span>
+            </div>
+            <div class="r-slide-dots" aria-hidden="true">
+              <span class="r-slide-dot r-slide-dot--active"></span>
+              <span class="r-slide-dot"></span>
+            </div>
           </div>
           <div class="r-card-body">
             <div class="r-tags">
@@ -525,8 +536,22 @@
 
       <div class="pub-list" id="pubList">
 
+        <!-- 01: BoltzYML software -->
         <div class="pub-entry reveal-up">
           <span class="pub-number mono">01</span>
+          <div class="pub-content">
+            <p class="pub-authors"><strong>Mallick, A.</strong></p>
+            <p class="pub-title">BoltzYML: a preprocessing-file generator for Boltz-2 ternary (Protein&nbsp;1 + Ligand + Protein&nbsp;2) binding prediction.</p>
+            <p class="pub-journal"><em>Zenodo</em> &nbsp;&middot;&nbsp; 2026 &nbsp;&middot;&nbsp;
+              <a href="https://doi.org/10.5281/zenodo.20397272" target="_blank" rel="noopener" class="pub-doi">DOI: 10.5281/zenodo.20397272 &#x2197;</a>
+              &nbsp;&middot;&nbsp; <span class="pub-status pub-status--software">Software</span>
+            </p>
+          </div>
+        </div>
+
+        <!-- 02: Plant Molecular Biology -->
+        <div class="pub-entry reveal-up" data-delay="50">
+          <span class="pub-number mono">02</span>
           <div class="pub-content">
             <p class="pub-authors">
               Das, A., Pal, M., Price, A. H., Taria, S., <strong>Mallick, A.</strong>, Sharma, M., Kumar, S.,
@@ -538,8 +563,9 @@
           </div>
         </div>
 
+        <!-- 03: Indian Journal of Agricultural Sciences -->
         <div class="pub-entry reveal-up" data-delay="100">
-          <span class="pub-number mono">02</span>
+          <span class="pub-number mono">03</span>
           <div class="pub-content">
             <p class="pub-authors">
               <strong>Mallick, A.</strong>, Ramesh, R., Chinnusamy, V., Pandey, R., &amp; Nagar, S.
