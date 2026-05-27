@@ -2018,6 +2018,9 @@ section { padding: var(--sp-3xl) 0; }
 [data-theme="dark"] .boltzy-banner-wrap {
   filter: none;
 }
+.cisgs-logo {
+  height    : 56px;
+}
 .boltzy-links {
   display    : flex;
   flex-wrap  : wrap;
