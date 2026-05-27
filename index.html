@@ -425,16 +425,19 @@
             <div class="boltzy-header">
               <img src="assets/images/cisgs1.png" alt="Cis-GS logo" class="boltzy-logo cisgs-logo" loading="lazy" />
             </div>
-            <h3 class="r-title">Cis-GS &mdash; Cis-regulatory Element Genome Scanner</h3>
+            <h3 class="r-title">Cis-GS: Cis-regulatory Element Genome Scanner</h3>
             <p class="r-desc">
               A standalone desktop application for genome-wide identification and functional
               characterisation of cis-regulatory elements (CREs) and transcription factor
-              binding sites (TFBS). Integrates a seven-step bioinformatics pipeline &mdash;
-              NCBI genome fetching, promoter extraction, IUPAC motif scanning, sequence logo
-              building, expression data integration, co-expression network analysis (Louvain),
-              and K-means temporal clustering &mdash; with direct in-app access to PlantTFDB,
-              JASPAR&nbsp;2024, and HOCOMOCO&nbsp;v11 databases. Full CLI included for server
-              and pipeline use.
+              binding sites (TFBS). Runs an eight-step bioinformatics pipeline: live NCBI
+              genome &amp; annotation fetching, promoter extraction, IUPAC motif scanning
+              against PlantTFDB, AnimalTFDB, JASPAR&nbsp;2024 and HOCOMOCO&nbsp;v11,
+              publication-ready sequence logo generation, RNA-seq expression integration,
+              co-expression network analysis (Pearson / Spearman / WGCNA-style, Louvain
+              &amp; hierarchical clustering), K-means temporal clustering, and
+              <strong>KEGG pathway enrichment</strong> (hypergeometric ORA +
+              Benjamini&ndash;Hochberg FDR across 11,700+ organisms via live REST queries).
+              Full CLI included for server and pipeline use.
             </p>
             <p class="r-desc" style="margin-top:.5rem; font-size:.8rem; color:var(--accent)">
               &#x1F512; Final stage of production &mdash; public release coming soon on GitHub.
