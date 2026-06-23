@@ -1261,6 +1261,19 @@ section { padding: var(--sp-3xl) 0; }
   border-radius: var(--r-pill);
 }
 
+.tl-tweet-link {
+  display      : inline-flex;
+  align-items  : center;
+  gap          : 4px;
+  font-size    : .72rem;
+  color        : var(--text-2);
+  text-decoration: none;
+  margin-top   : var(--sp-sm);
+  margin-right : var(--sp-sm);
+  transition   : color var(--dur-fast);
+}
+.tl-tweet-link:hover { color: var(--accent); }
+
 /* Mobile — single column, dots on left edge */
 @media (max-width: 768px) {
   /* Line runs through dot centre (col-1 is 44px, centre = 22px) */
