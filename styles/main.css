@@ -2019,6 +2019,9 @@ section { padding: var(--sp-3xl) 0; }
   display         : block;
 }
 .boltzy-header {
+  display      : flex;
+  align-items  : center;
+  gap          : var(--sp-sm);
   margin-bottom: var(--sp-sm);
 }
 .boltzy-logo {
@@ -2033,6 +2036,26 @@ section { padding: var(--sp-3xl) 0; }
 }
 .cisgs-logo {
   height    : 56px;
+}
+.ampliscan-logo {
+  height    : 40px;
+}
+.boltzy-title-text {
+  font-family   : var(--f-display);
+  font-weight   : 800;
+  font-size     : 1.5rem;
+  letter-spacing: -0.02em;
+  color         : var(--text);
+}
+.boltzy-version {
+  font-size    : .68rem;
+  font-weight  : 600;
+  letter-spacing: .04em;
+  color        : var(--accent);
+  background    : var(--accent-glow);
+  border        : 1px solid var(--accent-dim);
+  border-radius : var(--r-pill);
+  padding       : 2px 9px;
 }
 .boltzy-links {
   display    : flex;
