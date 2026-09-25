@@ -1,14 +1,13 @@
 /* ════════════════════════════════════════
    REACH — "Where can you find me?" section
    Leaflet mini-maps · present/absent game
-   + Geolocation auto-detection
 ════════════════════════════════════════ */
 (function initReach() {
   if (typeof L === 'undefined') return;
 
-  /* ── Tile layers ── */
-  const TILE_DARK  = 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
-  const TILE_LIGHT = 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png';
+  /* ── Tile layers (Esri grey canvas, no API key needed) ── */
+  const TILE_DARK  = 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}';
+  const TILE_LIGHT = 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}';
 
   /* ── Location data with per-card panel HTML ── */
   const locations = [
@@ -139,12 +138,15 @@
       scrollWheelZoom   : false,
       doubleClickZoom   : false,
       keyboard          : false,
-      attributionControl: false,
+      attributionControl: true,
     });
+    map.attributionControl.setPrefix(false);
+    map.attributionControl.setPosition('topright');
 
     const tl = L.tileLayer(getTileUrl(), {
-      subdomains: 'abcd',
-      maxZoom   : 19,
+      maxNativeZoom: 16,
+      maxZoom      : 19,
+      attribution  : 'Tiles &copy; Esri',
     }).addTo(map);
 
     L.marker([lat, lng], { icon: makeIcon('#5eead4') }).addTo(map);

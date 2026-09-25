@@ -1426,8 +1426,14 @@ section { padding: var(--sp-3xl) 0; }
 
 .reach-map { width: 100%; height: 100%; }
 
-/* Leaflet attribution cleanup */
-.reach-map .leaflet-control-attribution { display: none; }
+/* Leaflet attribution: small tile credit in the top corner */
+.reach-map.leaflet-container .leaflet-control-attribution {
+  background : transparent;
+  color      : var(--text-3);
+  font-family: var(--f-mono);
+  font-size  : .58rem;
+  padding    : 2px 6px;
+}
 
 /* Gradient fade at bottom of map into card */
 .reach-map-overlay {
